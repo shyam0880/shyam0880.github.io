@@ -878,6 +878,47 @@ section {
 }
 
 /*--------------------------------------------------------------
+# three_box section
+--------------------------------------------------------------*/
+
+.three_box {
+  background-color: #fff;
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.box_text {
+  background: #ffffff;
+  text-align: center;
+  padding: 50px 20px 20px 20px;
+  border: #b4e1f6 solid 5px;
+  border-radius: 15px;
+  height: 400px;
+}
+
+.box_text h3 {
+  color: #121010;
+  font-size: 20px;
+  line-height: 22px;
+  font-weight: bold;
+  padding-bottom: 25px;
+}
+
+.box_text p {
+  font-size: 17px;
+  color: #050505;
+  line-height: 30px;
+}
+
+.box_text i {
+  padding-bottom: 25px;
+  display: block;
+}
+
+
+/** end three_box section **/
+
+/*--------------------------------------------------------------
 # Contact
 --------------------------------------------------------------*/
 .contact {
