@@ -891,9 +891,11 @@ section {
   background: #ffffff;
   text-align: center;
   padding: 50px 20px 20px 20px;
-  border: #b4e1f6 solid 5px;
   border-radius: 15px;
   height: 400px;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
+  transition: transform 1s;
+  transform-style: preserve-3d;
 }
 
 .box_text h3 {
@@ -905,12 +907,10 @@ section {
 }
 
 .box_text p {
-  margin-top: 10px;
   font-size: 18px;
   font-family:'Times New Roman', Times, serif;
   font-weight: bold;
   color: #000000;
-  line-height: 30px;
   text-align: justify;
 }
 
@@ -921,17 +921,35 @@ section {
 .box_text img {
   position: relative;
   height: 100px;
-  width: auto;
 }
 
-.explain {
-  margin: 0%;
-  padding: 0%;
-  height: 11rem;
-  background-color: #b4e1f6 ;
-  border: #b4e1f6 solid 5px;
-  border-radius: 0px 15px 0px 15px;
+.col-md-4:hover .box_text {
+  transition-delay: 0.5s;
+  transform: rotateY(180deg);
 }
+
+/* Position the front and back side */
+.flip-box-front, .flip-box-back {
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+}
+
+.flip-box-back {
+  text-align: left;
+  transform: rotateY(180deg);
+  margin-top: -180px;
+}
+
+.flip-box-back p{
+  font-size: 15px;
+  font-family:'Courier New', Courier, monospace;
+  font-weight: bold;
+  color: #000000;
+  text-align: justify;
+}
+
+
+
 
 
 /** end three_box section **/
