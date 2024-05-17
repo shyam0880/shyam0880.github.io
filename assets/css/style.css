@@ -946,6 +946,21 @@ section {
   overflow-y:auto;
 }
 
+.flip-box-back::-webkit-scrollbar{
+	width: 0.3rem;
+	height:0.1rem;
+}
+
+.flip-box-back::-webkit-scrollbar-thumb{
+	border-radius: .8rem;
+	background-color: #0004;
+	visibility: hidden;
+}
+
+.flip-box-back::-webkit-scrollbar-thumb{
+	visibility: visible;
+}
+
 .flip-box-back p{
   font-size: 15px;
   font-family:'Courier New', Courier, monospace;
