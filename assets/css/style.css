@@ -373,6 +373,10 @@ section {
 /*--------------------------------------------------------------
 # About
 --------------------------------------------------------------*/
+.about{
+  background-color: #70c6e1;
+}
+
 .row img{
   border-radius: 5%;
 }
@@ -408,6 +412,12 @@ section {
 
 .about .content p:last-child {
   margin-bottom: 0;
+}
+
+.about ul li a{
+  color: #173b6c;
+  font-weight: bold;
+  font-family: 'Courier New', Courier, monospace;
 }
 
 /*--------------------------------------------------------------
