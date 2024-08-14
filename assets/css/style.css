@@ -14,6 +14,21 @@ body {
   color: #272829;
 }
 
+body::-webkit-scrollbar{
+	width: 0.3rem;
+	height:0.1rem;
+}
+
+body::-webkit-scrollbar-thumb{
+	border-radius: .8rem;
+	background-color: #0004;
+	visibility: hidden;
+}
+
+body::-webkit-scrollbar-thumb{
+	visibility: visible;
+}
+
 a {
   color: #149ddd;
   text-decoration: none;
