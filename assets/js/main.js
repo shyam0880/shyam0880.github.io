@@ -20,6 +20,8 @@
     }
   }
 
+
+
   /**
    * Easy event listener function
    */
@@ -258,5 +260,19 @@
    * Initiate Pure Counter 
    */
   new PureCounter();
+
+
+  const switchMood = (e) => {
+    if(e.target.checked) {
+      document.querySelector('body').setAttribute('data-theme', 'light')
+    }
+    else{
+      document.querySelector('body').setAttribute('data-theme', 'dark')
+    }
+  }
+  document.getElementById('themeToggle').addEventListener('change', switchMood);
+
+  
+
 
 })()
