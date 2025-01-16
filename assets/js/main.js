@@ -37,7 +37,7 @@
   }
 
   /**
-   * Easy on scroll event listener 
+   * Easy on scroll event listener
    */
   const onscroll = (el, listener) => {
     el.addEventListener('scroll', listener)
@@ -192,7 +192,7 @@
   });
 
   /**
-   * Initiate portfolio lightbox 
+   * Initiate portfolio lightbox
    */
   const portfolioLightbox = GLightbox({
     selector: '.portfolio-lightbox'
@@ -257,11 +257,11 @@
   });
 
   /**
-   * Initiate Pure Counter 
+   * Initiate Pure Counter
    */
   new PureCounter();
 
-
+//  for dark and light mode
   const switchMood = (e) => {
     if(e.target.checked) {
       document.querySelector('body').setAttribute('data-theme', 'light')
@@ -272,7 +272,17 @@
   }
   document.getElementById('themeToggle').addEventListener('change', switchMood);
 
-  
+// for side bar
+  document.querySelector('.sidebar').addEventListener('click', () => {
+    const header = document.querySelector('#header');
+    if (header.style.display === 'block') {
+      header.style.display = 'none';
+    } else {
+      header.style.display = 'block';
+    }
+    
+  });
+
 
 
 })()

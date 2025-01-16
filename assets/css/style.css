@@ -179,10 +179,21 @@ h6 {
   padding-left: 30px;
   padding-right: 30px;
 }
+.sidebar{
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  width: 30px;
+  height: 30px;
+  z-index: 9999;
+  color: #2196f3;
+  font-size: 30px;
+  display: none;
+}
 
 @media (max-width: 1199px) {
   #header {
-    left: -300px;
+    display: none;
   }
 
   #main {
@@ -194,6 +205,10 @@ h6 {
     padding-left: 12px;
     padding-right: 12px;
   }
+  .sidebar{
+    display: block;
+  }
+
 }
 
 /*--------------------------------------------------------------
@@ -569,7 +584,7 @@ section {
     font-size: small;
     margin-bottom: 5px;
     display: block;
-    color: white;
+    color: var(--text-color);
 
   }
   .about .container .row{
