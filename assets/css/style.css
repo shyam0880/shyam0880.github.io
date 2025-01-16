@@ -1057,4 +1057,8 @@ input:checked + .slider:before {
 }
 /** switch mood end **/
 
+.lastimg{
+  display: none;
+}
+
 /** end project_box section **/
