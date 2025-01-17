@@ -273,15 +273,51 @@
   document.getElementById('themeToggle').addEventListener('change', switchMood);
 
 // for side bar
-  document.querySelector('.sidebar').addEventListener('click', () => {
+  //  document.querySelector('.sidebar').addEventListener('click', () => {
+  //    const header = document.querySelector('#header');
+  //    if (header.style.display === 'block' && header.style.width<1192) {
+  //      header.style.display = 'none';
+  //    } else {
+  //      header.style.display = 'block';
+  //    }
+
+  //  });
+
+  //  window.addEventListener('resize', () => {
+  //   if (window.innerWidth >= 768) {
+  //     sidebar.style.transform = 'translateX(-100%)'; // Hide sidebar
+  //     header.style.display = 'none'; // Reset header
+  //   }
+  // });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const sidebar = document.querySelector('.sidebar');
+    const sidebarIcon = document.querySelector('.sidebar i');
     const header = document.querySelector('#header');
-    if (header.style.display === 'block') {
-      header.style.display = 'none';
-    } else {
-      header.style.display = 'block';
-    }
-    
+  
+    // Toggle header visibility on sidebar click
+    sidebar.addEventListener('click', () => {
+      header.classList.toggle('active'); // Add or remove the "active" class
+
+      const isOpen = header.classList.contains('active');
+      sidebarIcon.className = isOpen ? 'bi bi-x' : 'bx bx-menu-alt-left'; // Change sidebar icon
+    });
+  
+    // Reset header visibility on screen resize
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 1199) {
+        // Show header for large screens
+        header.classList.remove('active');
+        header.style.display = 'block';
+        const isOpen = header.classList.contains('active');
+        sidebarIcon.className = isOpen ? 'bi bi-x' : 'bx bx-menu-alt-left';
+      } else {
+        // Hide header for small screens
+        header.style.display = 'none';
+      }
+    });
   });
+ 
 
 
 
