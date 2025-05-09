@@ -272,24 +272,6 @@
   }
   document.getElementById('themeToggle').addEventListener('change', switchMood);
 
-// for side bar
-  //  document.querySelector('.sidebar').addEventListener('click', () => {
-  //    const header = document.querySelector('#header');
-  //    if (header.style.display === 'block' && header.style.width<1192) {
-  //      header.style.display = 'none';
-  //    } else {
-  //      header.style.display = 'block';
-  //    }
-
-  //  });
-
-  //  window.addEventListener('resize', () => {
-  //   if (window.innerWidth >= 768) {
-  //     sidebar.style.transform = 'translateX(-100%)'; // Hide sidebar
-  //     header.style.display = 'none'; // Reset header
-  //   }
-  // });
-
   document.addEventListener('DOMContentLoaded', () => {
     const sidebar = document.querySelector('.sidebar');
     const sidebarIcon = document.querySelector('.sidebar i');
@@ -318,7 +300,38 @@
     });
   });
  
-
-
-
 })()
+
+function filterSkills(category) {
+  const allIcons = document.querySelectorAll('.skill-icon');
+  allIcons.forEach(icon => {
+    if (category === 'all') {
+      icon.style.display = 'inline-block';
+    } else {
+      icon.style.display = icon.classList.contains(category) ? 'inline-block' : 'none';
+    }
+  });
+}
+
+// Show all by default
+document.addEventListener('DOMContentLoaded', () => filterSkills('all'));
+
+function changeForm(view) {
+  const listIcon = document.querySelector('.bx-list-ul');
+  const gridIcon = document.querySelector('.bxs-grid');
+  const listContent = document.querySelector('.skills-content.list');
+  const gridContent = document.querySelector('.skills-content.grid');
+
+  // Toggle icon active state
+  listIcon.classList.toggle('active', view === 'list');
+  gridIcon.classList.toggle('active', view === 'grid');
+
+  // Toggle content visibility
+  listContent.classList.toggle('active', view === 'list');
+  gridContent.classList.toggle('active', view === 'grid');
+}
+
+// Set default to list on page load
+window.addEventListener('DOMContentLoaded', () => {
+  changeForm('list');
+})
