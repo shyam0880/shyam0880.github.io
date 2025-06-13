@@ -335,3 +335,24 @@ function changeForm(view) {
 window.addEventListener('DOMContentLoaded', () => {
   changeForm('list');
 })
+
+function changeView(type) {
+  const container = document.querySelector('.list-type-content-2');
+  const listIcon = container.querySelector('.bx-list-ul');
+  const gridIcon = container.querySelector('.bx-dots-vertical');
+  const eduBox = document.querySelector('.edu-box');
+  const eduBox2 = document.querySelector('.edu-box-2');
+
+
+  // Toggle icon active state
+  listIcon.classList.toggle('active', type === 'list');
+  gridIcon.classList.toggle('active', type === 'grid');
+
+  // Toggle content visibility
+  eduBox.classList.toggle('active', type === 'list');
+  eduBox2.classList.toggle('active', type === 'grid');
+
+}
+window.addEventListener('DOMContentLoaded', () => {
+  changeView('grid');
+})

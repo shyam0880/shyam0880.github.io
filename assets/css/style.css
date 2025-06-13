@@ -12,6 +12,11 @@ body {
   --border-color: #313149;
   --text-shadow1:gray;
   --text-shadow2:white;
+  --edu-bar-color:hsl(0, 0%, 22%);
+  --gradient: linear-gradient(to bottom right,hsl(264, 100%, 66%) 0%,hsl(240, 20%, 24%) 50%);
+  /* --gradient: linear-gradient(to bottom right,hsl(264, 100%, 66%) 0%,hsla(0, 0%, 25%, 0) 50% ); */
+  --icon-bg:  hsl(240, 2%, 13%);
+  --border-shadow:  6px 6px 12px rgba(0, 0, 0, 0.5), -6px -6px 12px rgba(255, 255, 255, 0.09);
 }
 
 [data-theme='light'] {
@@ -22,6 +27,11 @@ body {
   --border-color: #c6c6c6;
   --text-shadow1:white;
   --text-shadow2:gray;
+  --edu-bar-color:hsl(0, 0%, 70%);
+  --gradient: linear-gradient(to bottom right,hsl(264, 100%, 66%) 0%,hsl(0, 0%, 78%) 50%);
+  /* --gradient: linear-gradient(to bottom right,hsl(264, 100%, 66%) 0%,hsla(0, 0%, 100%, 0) 50%); */
+  --icon-bg:  hsl(240, 2%, 90%);
+  --border-shadow:  6px 6px 12px rgba(0, 0, 0, 0.12), -6px -6px 12px rgba(255, 255, 255, 0.6);
   
 }
 
@@ -164,7 +174,6 @@ h6 {
   margin-left: 300px;
 }
 
-
 .container,
 .container-fluid {
   padding-left: 30px;
@@ -181,8 +190,6 @@ h6 {
   font-size: 40px;
   display: none;
 }
-
-
 
 @media (max-width: 1199px) {
   #header {
@@ -315,6 +322,7 @@ section {
   background: linear-gradient(to right, #149ddd, #854fee);
   bottom: 0;
   transition: 0.3s;
+  border-radius: 25px;
 }
 
 .section-title h2::before {
@@ -689,7 +697,7 @@ section {
 --------------------------------------------------------------*/
 .educations{
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   border-top: 2px solid #565656;
   background: var(--body-background)
 
@@ -745,7 +753,149 @@ body[data-theme='light'] #edu-item {
 .edu-item:hover{
   transform: scale(1.05);
 }
+          /* --------------------------edu 2----------------------- */
 
+/* .edu-box-2 {
+  margin: 15px 12px;
+  margin-bottom: 75px;
+  min-width: 259px;
+} */
+
+.edu-box-2 {
+  margin: 15px 12px;
+  margin-bottom: 75px;
+  min-width: 259px;
+  padding: 20px;
+}
+
+.icon-box {
+  position: relative;
+  background: linear-gradient(145deg, hsl(264, 100%, 66%), hsl(240, 60%, 45%));
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 26px;
+  color: var(--text-color);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+  z-index: 1;
+  border: 2px solid rgba(255,255,255, 0.1);
+}
+
+
+.icon-box::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  background: var(--icon-bg);
+  border-radius: inherit;
+  z-index: -1;
+}
+
+.h2,
+.h3,
+.h4,
+.h5 {
+  color: hsl(0, 0%, 98%);
+  text-transform: capitalize;
+}
+
+.h2 { font-size: 24px; }
+
+.h3 { font-size: 18px; }
+
+.h4 { font-size: 16px; }
+
+.h5 {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+
+.timeline { margin-bottom: 30px; }
+
+.timeline .title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.timeline-list {
+  list-style: none;
+  font-size: 14px;
+  margin-left: 25px;
+}
+
+.timeline-item { 
+  position: relative; 
+  width: 80%;
+  line-height: 1.6;
+  letter-spacing: .05rem;
+}
+
+.timeline-item:not(:last-child) { margin-bottom: 20px; }
+
+.timeline-item-title {
+  color: var(--text-color);
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 0.05rem;
+  margin-bottom: 8px;
+}
+
+.timeline-list span {
+  margin-top: -5px;
+  color: gray;
+  font-weight: 600;
+}
+
+.timeline-list span:nth-child(2) {
+  color: hsl(239, 100%, 72%);
+  line-height: 1.6;
+}
+
+.timeline-item:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  top: -25px;
+  left: -30px;
+  width: 4px;
+  height: calc(100% + 50px);
+  background: linear-gradient(to bottom, hsl(264, 100%, 66%), hsla(0, 0%, 25%, 0.5));
+  border-radius: 10px;
+}
+
+.timeline-item::after {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: -34px;
+  height: 12px;
+  width: 12px;
+  background: linear-gradient(to right, hsl(220, 100%, 72%), hsl(239, 100%, 68%));
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px rgba(255,255,255, 0.1);
+}
+
+.timeline-text {
+  color:var(--text-color);
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+          /* --------------------------edu 2 end----------------------- */
+
+  .edu-box, .edu-box-2 {
+    display: none;
+  }
+
+  .edu-box.active, .edu-box-2.active {
+    display: block;
+  }
 
 /*--------------------------------------------------------------
 # Certificates
@@ -792,11 +942,13 @@ body[data-theme='light'] #edu-item {
 
 .certificate-card h3 {
   font-size: 1.1rem;
+  font-weight:700;
   color: #007acc;
 }
 
 .certificate-card p {
   font-size: 0.9rem;
+  font-weight: 600;
   color: var(--text-shadow2);
 }
 
@@ -817,16 +969,24 @@ body[data-theme='light'] #edu-item {
   flex-wrap: wrap;
 }
 
+
+
 .box_text {
-  border: 2px solid var(--border-color);
+  /* Keep your gradient border */
+  border: 2px solid transparent;
+  background: linear-gradient(var(--edu-item), var(--edu-item)) padding-box, 
+              var(--gradient) border-box;
+
   height: 370px;
   width: 350px;
   padding: 20px;
   margin: 10px;
-  border-radius: 10px;
-  box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
-  transition: 0.3s ease;
+  border-radius: 10px; 
+  box-shadow: var(--border-shadow);
+
+  transition: all 0.3s ease;
   transform-style: preserve-3d;
+  backdrop-filter: blur(4px); 
 }
 
 
@@ -850,7 +1010,8 @@ body[data-theme='light'] #edu-item {
 .box_text .project-box h3 {
   color: #149ddd;
   font-size: 20px;
-  line-height: 10px;
+  line-height: 1;
+  letter-spacing: .05rem;
   font-weight: bold;
   margin: 20px 0 5px 5px;
 }
@@ -863,6 +1024,7 @@ body[data-theme='light'] #edu-item {
 
 .box_text .project-box p {
   font-size: 14px;
+  letter-spacing: 1px;
   color:var(--text-color);
   text-align: justify;
 }
@@ -1032,7 +1194,7 @@ input:checked + .slider:before {
 
   /* --------------------------education--------------- */
   .educations{
-    height: 35rem;
+    min-height: 39rem;
   } 
   .edu-item {
     border-radius: 25px;
@@ -1055,6 +1217,13 @@ input:checked + .slider:before {
   .educations .edu-item p{
     font-size: small;
   }
+  .timeline-item { 
+    width: 95%;
+  }
+  .timeline-item-title {
+    font-size: 16px;
+  }
+
 
   /* -------------------------project---------------------- */
   .project-wrap{
@@ -1115,7 +1284,9 @@ input:checked + .slider:before {
     font-size: 14px;
   }
 
-
+  .timeline-item { 
+    width: 100%;
+  }
 
    .skill-filter-buttons{
     display: none;
