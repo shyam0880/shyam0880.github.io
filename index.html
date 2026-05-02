@@ -1,530 +1,1263 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shyam Lal Kafle | Full Stack Developer</title>
+  <meta name="description" content="Full Stack Developer specializing in Java, Spring Boot and React." />
+  <link rel="icon" href="assets/img/sks.jpg" />
 
-    <title>Shyam Resume</title>
-    <meta content="" name="description">
-    <meta content="" name="keywords">
+  <!-- Open Graph / social preview -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://shyam0880.github.io/" />
+  <meta property="og:title" content="Shyam Lal Kafle | Full Stack Developer" />
+  <meta property="og:description" content="Full Stack Developer specializing in Java, Spring Boot and React. Building scalable web apps." />
+  <meta property="og:image" content="https://shyam0880.github.io/assets/img/myselfpic.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Shyam Lal Kafle | Full Stack Developer" />
+  <meta name="twitter:description" content="Full Stack Developer specializing in Java, Spring Boot and React." />
+  <meta name="twitter:image" content="https://shyam0880.github.io/assets/img/myselfpic.png" />
 
-    <!-- Favicons -->
-    <link href="assets/img/sks.jpg" rel="icon">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <!-- Devicons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css" />
 
-    <!-- Vendor CSS Files -->
-    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-    <!-- Template Main CSS File -->
-    <link href="assets/css/style.css" rel="stylesheet">
+  <!-- Remix Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet" />
 
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
-    <!-- ======= Header ======= -->
-    <header id="header">
-        <div class="d-flex flex-column">
 
-            <div class="profile">
-                <img src="assets/img/picture.jpg" alt="" class="img-fluid rounded-circle">
-                <h1 class="text-light"><a href="index.html">Shyam Lal Kafle</a></h1>
-                <div class="social-links mt-3 text-center">
-                  <a href="https://github.com/shyam0880" class="github" target="_blank" title="GitHub"><i class="bx bxl-github"></i></a>
-                  <a href="https://www.hackerrank.com/shyamlal9802?hr_r=1" class="trophy" target="_blank" title="HackerRank"><i class="bx bx-trophy"></i></a>
-                  <a href="https://www.linkedin.com/in/shyam0880/" class="linkedin" target="_blank" title="Linkedin"><i class="bx bxl-linkedin"></i></a>
-                  <a href="https://www.instagram.com/suraj_kafle_/" class="instagram" target="_blank" title="Instagram"><i class="bx bxl-instagram"></i></a>
-                  <a href="https://drive.google.com/file/d/1aQFXVFHNykcY20hDBGUvQVcH_-FPfsG5/view?usp=sharing" class="resume" target="_blank" title="Resume"><i class="bx bx-food-menu"></i></a>
+  <!-- ═══════════════════════════════════════════
+       NAVBAR
+  ═══════════════════════════════════════════ -->
+  <nav id="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo">Portfolio</a>
+      <button id="hamburger" class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile nav overlay — outside navbar so it's not clipped by navbar stacking context -->
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#about" class="nav-link">About</a></li>
+    <li><a href="#skills" class="nav-link">Skills</a></li>
+    <li><a href="#projects" class="nav-link">Projects</a></li>
+    <li><a href="#education" class="nav-link">Education</a></li>
+    <li><a href="#certificates" class="nav-link">Certificates</a></li>
+    <li><a href="#contact" class="nav-link">Contact</a></li>
+  </ul>
+
+  <!-- ═══════════════════════════════════════════
+       HERO
+  ═══════════════════════════════════════════ -->
+  <section id="hero">
+    <div class="hero-bg-pattern"></div>
+
+    <!-- Floating tech icons -->
+    <div class="float-icon fi-1">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons/java/java-original.svg" alt="Java" />
+    </div>
+    <div class="float-icon fi-2">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons/react/react-original.svg" alt="React" />
+    </div>
+    <div class="float-icon fi-3">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons/python/python-original.svg" alt="Python" />
+    </div>
+    <div class="float-icon fi-4">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons/spring/spring-original.svg" alt="Spring Boot" />
+    </div>
+
+    <div class="container">
+      <div class="hero-content">
+        <p class="hero-greeting">Hello, World! 👋</p>
+        <h1 class="hero-name">Hi, I'm <span class="accent">Shyam Lal Kafle</span></h1>
+        <h2 class="hero-typewriter">
+          <span id="typewriter"></span><span class="cursor">|</span>
+        </h2>
+        <p class="hero-tagline">Building scalable web apps with Java, Spring Boot &amp; React.</p>
+        <div class="hero-cta">
+          <a href="#projects" class="btn btn-primary">View My Work</a>
+          <a href="https://drive.google.com/file/d/1aQFXVFHNykcY20hDBGUvQVcH_-FPfsG5/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Download CV</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       ABOUT
+  ═══════════════════════════════════════════ -->
+  <section id="about">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-tag">Who I Am</span>
+        <h2>About Me</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-img-wrap fade-in">
+          <img src="assets/img/picture.jpg" alt="Shyam Lal Kafle" class="about-photo" />
+          <div class="about-img-badge">
+            <span class="badge-dot"></span>
+            <span>Open to work</span>
+          </div>
+        </div>
+        <div class="about-text fade-in">
+          <h3 class="about-headline">I turn ideas into <span class="accent">production-ready</span> software.</h3>
+          <p>
+            B.Tech CS grad who went deep on the full stack — Java &amp; Spring Boot on the server, React on the client, MySQL keeping the data honest. I care about clean architecture, readable code, and shipping things that actually work.
+          </p>
+
+          <div class="about-stats">
+            <div class="stat-item">
+              <span class="stat-num">4+</span>
+              <span class="stat-label">Projects shipped</span>
+              <span class="stat-sub">live &amp; on GitHub</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-num">2+</span>
+              <span class="stat-label">Yrs project exp</span>
+              <span class="stat-sub">self-taught &amp; shipped</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-num">8.21</span>
+              <span class="stat-label">B.Tech CGPA</span>
+              <span class="stat-sub">CS&amp;E · MITS</span>
+            </div>
+            <div class="stat-item stat-item-building">
+              <span class="stat-num">
+                <span class="pill-dot"></span>
+              </span>
+              <span class="stat-label">Currently building</span>
+              <a href="https://github.com/shyam0880/Personal_Dashboard" target="_blank" rel="noopener noreferrer" class="stat-sub-link">Personal Dashboard ↗</a>
+            </div>
+          </div>
+
+          <div class="about-links">
+            <a href="mailto:Shyamlal9802@gmail.com" class="about-link">
+              <i class="ri-mail-line"></i> Shyamlal9802@gmail.com
+            </a>
+            <a href="https://github.com/shyam0880" target="_blank" rel="noopener noreferrer" class="about-link">
+              <i class="ri-github-fill"></i> github.com/shyam0880
+            </a>
+            <a href="https://www.linkedin.com/in/shyam0880/" target="_blank" rel="noopener noreferrer" class="about-link">
+              <i class="ri-linkedin-box-fill"></i> linkedin.com/in/shyam0880
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       SKILLS
+  ═══════════════════════════════════════════ -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-tag">What I Know</span>
+        <h2>Skills &amp; Technologies</h2>
+      </div>
+
+      <div class="skills-flat fade-in">
+
+        <div class="skills-row">
+          <span class="skills-row-label">Languages</span>
+          <div class="skills-row-icons">
+            <div class="skill-chip">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons/java/java-original.svg" alt="Java" />
+              <span>Java</span>
+            </div>
+            <div class="skill-chip">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons/javascript/javascript-original.svg" alt="JavaScript" />
+              <span>JavaScript</span>
+            </div>
+            <div class="skill-chip">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons/python/python-original.svg" alt="Python" />
+              <span>Python</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="skills-row">
+          <span class="skills-row-label">Frontend</span>
+          <div class="skills-row-icons">
+            <div class="skill-chip">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons/html5/html5-original.svg" alt="HTML" />
+              <span>HTML</span>
+            </div>
+            <div class="skill-chip">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons/css3/css3-original.svg" alt="CSS" />
+              <span>CSS</span>
+            </div>
+            <div class="skill-chip">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons/react/react-original.svg" alt="React" />
+              <span>React</span>
+            </div>
+            <div class="skill-chip">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons/vitejs/vitejs-original.svg" alt="Vite" />
+              <span>Vite</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="skills-row">
+          <span class="skills-row-label">Backend</span>
+          <div class="skills-row-icons">
+            <div class="skill-chip">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons/spring/spring-original.svg" alt="Spring Boot" />
+              <span>Spring Boot</span>
+            </div>
+            <div class="skill-chip">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons/hibernate/hibernate-plain.svg" alt="Hibernate" />
+              <span>Hibernate</span>
+            </div>
+            <div class="skill-chip">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/redis/redis-original.svg" alt="Redis" />
+              <span>Redis</span>
+            </div>
+            <div class="skill-chip">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/apachekafka/apachekafka-original.svg" alt="Kafka" />
+              <span>Kafka</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="skills-row">
+          <span class="skills-row-label">Databases</span>
+          <div class="skills-row-icons">
+            <div class="skill-chip">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons/mysql/mysql-original.svg" alt="MySQL" />
+              <span>MySQL</span>
+            </div>
+            <div class="skill-chip">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons/oracle/oracle-original.svg" alt="Oracle" />
+              <span>Oracle</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="skills-row">
+          <span class="skills-row-label">Cloud &amp; Deploy</span>
+          <div class="skills-row-icons">
+            <div class="skill-chip">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons/postman/postman-original.svg" alt="Postman" />
+              <span>Postman</span>
+            </div>
+            <div class="skill-chip">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons/swagger/swagger-original.svg" alt="Swagger" />
+              <span>Swagger</span>
+            </div>
+            <div class="skill-chip">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons/netlify/netlify-original.svg" alt="Netlify" />
+              <span>Netlify</span>
+            </div>
+            <div class="skill-chip">
+              <img src="https://www.svgrepo.com/show/353566/cloudinary.svg" alt="Cloudinary" />
+              <span>Cloudinary</span>
+            </div>
+            <div class="skill-chip">
+              <img src="https://www.svgrepo.com/show/374002/render.svg" alt="Render" />
+              <span>Render</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="skills-row">
+          <span class="skills-row-label">Version Control</span>
+          <div class="skills-row-icons">
+            <div class="skill-chip">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons/git/git-original.svg" alt="Git" />
+              <span>Git</span>
+            </div>
+            <div class="skill-chip">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons/github/github-original.svg" alt="GitHub" />
+              <span>GitHub</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="skills-row">
+          <span class="skills-row-label">Dev Tools</span>
+          <div class="skills-row-icons">
+            <div class="skill-chip">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons/intellij/intellij-original.svg" alt="IntelliJ IDEA" />
+              <span>IntelliJ IDEA</span>
+            </div>
+            <div class="skill-chip">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons/visualstudio/visualstudio-plain.svg" alt="VS Code" />
+              <span>VS Code</span>
+            </div>
+            <div class="skill-chip">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons/jupyter/jupyter-original.svg" alt="Jupyter" />
+              <span>Jupyter</span>
+            </div>
+            <div class="skill-chip">
+              <img src="https://www.svgrepo.com/show/349332/google-colab.svg" alt="Google Colab" />
+              <span>Google Colab</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       PROJECTS
+  ═══════════════════════════════════════════ -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-tag">What I've Built</span>
+        <h2>Projects <span class="project-count">7</span></h2>
+      </div>
+      <div class="projects-grid">
+
+        <!-- 1. Personal Dashboard — currently building -->
+        <div class="project-card fade-in">
+          <div class="project-img-wrap">
+            <img src="assets/img/Personal_dashboard.png" alt="Personal Dashboard" class="project-img" />
+          </div>
+          <div class="project-info">
+            <div class="project-title-row">
+              <h3 class="project-title">Personal Dashboard</h3>
+              <span class="wip-badge"><span class="pill-dot"></span> In progress</span>
+            </div>
+            <p class="project-desc">A personal productivity dashboard — continuously evolving with new features.</p>
+            <div class="project-stack">
+              <span class="stack-pill">React</span>
+              <span class="stack-pill">Spring Boot</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/shyam0880/Personal_Dashboard" target="_blank" rel="noopener noreferrer" class="project-link">
+                <i class="ri-github-fill"></i> GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. BuddyAI -->
+        <div class="project-card fade-in">
+          <div class="project-img-wrap">
+            <img src="assets/img/buddyai.png" alt="BuddyAI Terminal Assistant" class="project-img" />
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">BuddyAI — Terminal Assistant</h3>
+            <p class="project-desc">Lightweight AI-powered terminal assistant. Ask git commands, Linux tips, coding help — instant answers with a typewriter effect, right from your CLI.</p>
+            <div class="project-stack">
+              <span class="stack-pill">Python</span>
+              <span class="stack-pill">OpenRouter API</span>
+              <span class="stack-pill">colorama</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/shyam0880/AI-Terminal-Assistant-BuddyAI" target="_blank" rel="noopener noreferrer" class="project-link">
+                <i class="ri-github-fill"></i> GitHub
+              </a>
+              <a href="projects/buddyai/" class="project-link project-link-demo">
+                <i class="ri-external-link-line"></i> Live Demo
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. TuneHub (Featured) -->
+        <div class="project-card featured fade-in">
+          <span class="featured-badge">⭐ Featured</span>
+          <div class="project-img-wrap">
+            <img src="assets/img/Tunehub.png" alt="TuneHub" class="project-img" />
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">TuneHub</h3>
+            <p class="project-desc">A full-stack music streaming platform with user auth and playlist management.</p>
+            <div class="project-stack">
+              <span class="stack-pill">React</span>
+              <span class="stack-pill">Spring Boot</span>
+              <span class="stack-pill">MySQL</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/shyam0880/TuneHub-Frontend" target="_blank" rel="noopener noreferrer" class="project-link">
+                <i class="ri-github-fill"></i> GitHub
+              </a>
+              <a href="https://hummingbeat.netlify.app/" target="_blank" rel="noopener noreferrer" class="project-link project-link-demo">
+                <i class="ri-external-link-line"></i> Live Demo
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Social Media Platform -->
+        <div class="project-card fade-in">
+          <div class="project-img-wrap">
+            <img src="assets/img/Socialimg.png" alt="Social Media Platform" class="project-img" />
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">Social Media Platform</h3>
+            <p class="project-desc">Real-time social web app for posts, connections and interactions.</p>
+            <div class="project-stack">
+              <span class="stack-pill">React</span>
+              <span class="stack-pill">Spring Boot</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/shyam0880/Social-Media-Platform" target="_blank" rel="noopener noreferrer" class="project-link">
+                <i class="ri-github-fill"></i> GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. QuizWeb -->
+        <div class="project-card fade-in">
+          <div class="project-img-wrap">
+            <img src="assets/img/Quiz.png" alt="QuizWeb" class="project-img" />
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">QuizWeb</h3>
+            <p class="project-desc">Interactive quiz app with score tracking.</p>
+            <div class="project-stack">
+              <span class="stack-pill">HTML</span>
+              <span class="stack-pill">CSS</span>
+              <span class="stack-pill">JavaScript</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/shyam0880/QuizWeb" target="_blank" rel="noopener noreferrer" class="project-link">
+                <i class="ri-github-fill"></i> GitHub
+              </a>
+              <a href="https://quizweby.netlify.app/" target="_blank" rel="noopener noreferrer" class="project-link project-link-demo">
+                <i class="ri-external-link-line"></i> Live Demo
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. Mental Health Prediction ML -->
+        <div class="project-card fade-in">
+          <div class="project-img-wrap">
+            <img src="assets/img/ml.jpg" alt="Mental Health Prediction ML" class="project-img" />
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">Mental Health Prediction ML</h3>
+            <p class="project-desc">ML model predicting employee mental health risks.</p>
+            <div class="project-stack">
+              <span class="stack-pill">Python</span>
+              <span class="stack-pill">Scikit-learn</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/shyam0880/Mental_Health_prediction_using_ML" target="_blank" rel="noopener noreferrer" class="project-link">
+                <i class="ri-github-fill"></i> GitHub
+              </a>
+              <a href="https://mhealthcheck.netlify.app/" target="_blank" rel="noopener noreferrer" class="project-link project-link-demo">
+                <i class="ri-external-link-line"></i> Live Demo
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 7. Hostel Management — personal & private -->
+        <div class="project-card fade-in">
+          <div class="project-img-wrap project-img-placeholder">
+            <div class="project-img-icon"><i class="ri-building-line"></i></div>
+          </div>
+          <div class="project-info">
+            <div class="project-title-row">
+              <h3 class="project-title">Hostel Management</h3>
+              <span class="private-badge"><i class="ri-lock-line"></i> Personal</span>
+            </div>
+            <p class="project-desc">A personal hostel management system for handling room allocation, student records, and fee tracking.</p>
+            <div class="project-stack">
+              <span class="stack-pill">Spring Boot</span>
+              <span class="stack-pill">React</span>
+              <span class="stack-pill">MySQL</span>
+            </div>
+            <div class="project-links">
+              <span class="project-link project-link-private"><i class="ri-lock-line"></i> Private repo</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       EDUCATION
+  ═══════════════════════════════════════════ -->
+  <section id="education">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-tag">My Background</span>
+        <h2>Education</h2>
+      </div>
+      <div class="edu-timeline fade-in">
+
+        <!-- 1st: oldest — card ABOVE line -->
+        <div class="edu-item edu-above">
+          <div class="edu-card">
+            <span class="edu-year">2016 – 2017</span>
+            <h3 class="edu-school">Ramapur Revival English School</h3>
+            <p class="edu-degree">Secondary Education</p>
+            <span class="edu-grade">Percentage: 77.5%</span>
+          </div>
+          <div class="edu-connector"></div>
+          <div class="edu-dot"></div>
+          <div class="edu-spacer"></div>
+        </div>
+
+        <!-- 2nd: middle — card BELOW line -->
+        <div class="edu-item edu-below">
+          <div class="edu-spacer"></div>
+          <div class="edu-dot"></div>
+          <div class="edu-connector"></div>
+          <div class="edu-card">
+            <span class="edu-year">2017 – 2019</span>
+            <h3 class="edu-school">Deep High School</h3>
+            <p class="edu-degree">Science Stream</p>
+            <span class="edu-grade">Percentage: 79.5%</span>
+          </div>
+        </div>
+
+        <!-- 3rd: newest — card ABOVE line -->
+        <div class="edu-item edu-above">
+          <div class="edu-card">
+            <span class="edu-year">2019 – 2023</span>
+            <h3 class="edu-school" title="Madanapalle Institute of Technology &amp; Science">Madanapalle Institute of Technology &amp; Science</h3>
+            <p class="edu-degree">B.Tech — Computer Science &amp; Engineering</p>
+            <span class="edu-grade">CGPA: 8.21 / 10</span>
+          </div>
+          <div class="edu-connector"></div>
+          <div class="edu-dot"></div>
+          <div class="edu-spacer"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       CERTIFICATES
+  ═══════════════════════════════════════════ -->
+  <section id="certificates">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-tag">Credentials</span>
+        <h2>Certificates</h2>
+      </div>
+      <div class="cert-grid fade-in">
+
+        <a href="assets/img/Certificate/fullstack.png" target="_blank" rel="noopener noreferrer" class="cert-card">
+          <div class="cert-img-wrap">
+            <img src="assets/img/Certificate/fullstack.png" alt="Java Full Stack Development" class="cert-img" />
+            <div class="cert-overlay"><i class="ri-zoom-in-line"></i></div>
+          </div>
+          <div class="cert-info">
+            <h3 class="cert-title">Java Full Stack Development</h3>
+            <span class="cert-issuer">KodNest Technologies</span>
+          </div>
+        </a>
+
+        <a href="assets/img/Certificate/python.png" target="_blank" rel="noopener noreferrer" class="cert-card">
+          <div class="cert-img-wrap">
+            <img src="assets/img/Certificate/python.png" alt="Programming for Everybody (Python)" class="cert-img" />
+            <div class="cert-overlay"><i class="ri-zoom-in-line"></i></div>
+          </div>
+          <div class="cert-info">
+            <h3 class="cert-title">Programming for Everybody (Python)</h3>
+            <span class="cert-issuer">Coursera</span>
+          </div>
+        </a>
+
+        <a href="assets/img/Certificate/ai.png" target="_blank" rel="noopener noreferrer" class="cert-card">
+          <div class="cert-img-wrap">
+            <img src="assets/img/Certificate/ai.png" alt="AI for Everyone" class="cert-img" />
+            <div class="cert-overlay"><i class="ri-zoom-in-line"></i></div>
+          </div>
+          <div class="cert-info">
+            <h3 class="cert-title">AI for Everyone</h3>
+            <span class="cert-issuer">Coursera</span>
+          </div>
+        </a>
+
+        <a href="assets/img/Certificate/css.png" target="_blank" rel="noopener noreferrer" class="cert-card">
+          <div class="cert-img-wrap">
+            <img src="assets/img/Certificate/css.png" alt="Introduction to CSS" class="cert-img" />
+            <div class="cert-overlay"><i class="ri-zoom-in-line"></i></div>
+          </div>
+          <div class="cert-info">
+            <h3 class="cert-title">Introduction to CSS</h3>
+            <span class="cert-issuer">Simplilearn</span>
+          </div>
+        </a>
+
+        <a href="assets/img/Certificate/generativeai.png" target="_blank" rel="noopener noreferrer" class="cert-card">
+          <div class="cert-img-wrap">
+            <img src="assets/img/Certificate/generativeai.png" alt="Generative AI Studio" class="cert-img" />
+            <div class="cert-overlay"><i class="ri-zoom-in-line"></i></div>
+          </div>
+          <div class="cert-info">
+            <h3 class="cert-title">Generative AI Studio</h3>
+            <span class="cert-issuer">Simplilearn</span>
+          </div>
+        </a>
+
+        <a href="assets/img/Certificate/Git.png" target="_blank" rel="noopener noreferrer" class="cert-card">
+          <div class="cert-img-wrap">
+            <img src="assets/img/Certificate/Git.png" alt="Git (Version Control)" class="cert-img" />
+            <div class="cert-overlay"><i class="ri-zoom-in-line"></i></div>
+          </div>
+          <div class="cert-info">
+            <h3 class="cert-title">Git (Version Control)</h3>
+            <span class="cert-issuer">Simplilearn</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       CONTACT
+  ═══════════════════════════════════════════ -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-tag">Get In Touch</span>
+        <h2>Let's Connect</h2>
+      </div>
+      <div class="contact-content fade-in">
+        <p class="contact-tagline">
+          Open to full-time roles, freelance projects, and collaborations.
+        </p>
+        <a href="mailto:Shyamlal9802@gmail.com" class="btn btn-primary contact-email-btn">
+          <i class="ri-mail-send-line"></i> Shyamlal9802@gmail.com
+        </a>
+        <div class="contact-socials">
+          <a href="https://github.com/shyam0880" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="GitHub">
+            <i class="ri-github-fill"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/shyam0880/" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="LinkedIn">
+            <i class="ri-linkedin-box-fill"></i>
+          </a>
+          <button class="social-icon-btn" id="openCardBtn" aria-label="View Dev Card" title="View Dev Card" style="cursor:pointer;border:none;">
+            <i class="ri-contacts-book-line"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════ -->
+  <footer id="footer">
+    <p>Designed &amp; built by <span class="accent">Shyam Lal Kafle</span> · 2025</p>
+  </footer>
+
+  <!-- Back to top -->
+  <a href="#hero" id="back-to-top" aria-label="Back to top">
+    <i class="ri-arrow-up-line"></i>
+  </a>
+
+  <!-- Theme toggle -->
+  <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark mode">
+    <i class="ri-sun-line" id="theme-icon"></i>
+  </button>
+
+  <!-- Main JS -->
+  <script src="assets/js/main.js"></script>
+
+  <!-- ═══ DEV CARD MODAL ═══ -->
+
+  <style>
+    #cardModal {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.88); z-index: 10000;
+      align-items: center; justify-content: center;
+      padding: 20px; backdrop-filter: blur(8px);
+    }
+    #cardModal.open { display: flex; }
+
+    .card-modal-inner {
+      display: flex; flex-direction: column;
+      align-items: center; gap: 18px;
+      width: 100%; max-width: 740px;
+    }
+
+    .card-modal-close {
+      align-self: flex-end; background: none;
+      border: 1px solid rgba(255,255,255,0.2); color: #fff;
+      width: 34px; height: 34px; border-radius: 50%;
+      font-size: 0.9rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    .card-modal-close:hover { background: rgba(255,255,255,0.1); }
+
+    /* ── scene ── */
+    .dc-scene {
+      width: 100%; max-width: 720px; height: 380px;
+      perspective: 1400px;
+    }
+    .dc-flipper {
+      width: 100%; height: 100%; position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.7s cubic-bezier(0.4,0,0.2,1);
+    }
+    .dc-scene.flipped .dc-flipper { transform: rotateY(180deg); }
+
+    /* ── shared face ── */
+    .dc-face {
+      position: absolute; inset: 0;
+      backface-visibility: hidden; -webkit-backface-visibility: hidden;
+      border-radius: 6px; background: #0a0a0a;
+      border: 1px solid #1a1a1a; overflow: hidden;
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+    }
+    .dc-face::before {
+      content: ''; position: absolute; inset: 0; z-index: 0;
+      background-image:
+        linear-gradient(rgba(0,255,136,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,255,136,0.03) 1px, transparent 1px);
+      background-size: 30px 30px; pointer-events: none;
+    }
+    .dc-face::after {
+      content: ''; position: absolute; inset: 0; z-index: 0;
+      background:
+        linear-gradient(#00ff88,#00ff88) top left / 36px 2px no-repeat,
+        linear-gradient(#00ff88,#00ff88) top left / 2px 36px no-repeat,
+        linear-gradient(#00ff88,#00ff88) bottom right / 36px 2px no-repeat,
+        linear-gradient(#00ff88,#00ff88) bottom right / 2px 36px no-repeat;
+      pointer-events: none;
+    }
+    /* Real elements for download compatibility */
+    .dc-grid-bg {
+      position: absolute; inset: 0; z-index: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(0,255,136,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,255,136,0.03) 1px, transparent 1px);
+      background-size: 30px 30px;
+    }
+    .dc-corners {
+      position: absolute; inset: 0; z-index: 0; pointer-events: none;
+      background:
+        linear-gradient(#00ff88,#00ff88) top left / 36px 2px no-repeat,
+        linear-gradient(#00ff88,#00ff88) top left / 2px 36px no-repeat,
+        linear-gradient(#00ff88,#00ff88) bottom right / 36px 2px no-repeat,
+        linear-gradient(#00ff88,#00ff88) bottom right / 2px 36px no-repeat;
+    }
+    .dc-back-face { transform: rotateY(180deg); }
+
+    /* ── FRONT ── */
+    .dc-front-inner {
+      position: relative; z-index: 1;
+      display: grid; grid-template-columns: 260px 1fr;
+      height: 100%;
+    }
+    .dc-left {
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 14px; padding: 28px 20px;
+      border-right: 1px solid #1e1e1e;
+    }
+    .dc-avatar {
+      width: 110px; height: 110px;
+      border: 2px solid #00ff88; border-radius: 14px;
+      overflow: hidden; background: rgba(0,255,136,0.05);
+    }
+    .dc-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .dc-name {
+      font-size: 1.1rem; font-weight: 700; color: #fff;
+      text-align: center; line-height: 1.3;
+    }
+    .dc-role {
+      font-size: 0.75rem; color: #00ff88;
+      letter-spacing: 0.15em; text-align: center;
+    }
+
+    .dc-right {
+      position: relative; z-index: 1;
+      display: flex; flex-direction: column;
+      justify-content: flex-start;
+      padding: 24px 24px 24px 22px;
+      gap: 0;
+    }
+
+    /* top block */
+    .dc-top { display: flex; flex-direction: column; gap: 12px; flex-shrink: 0; }
+
+    .dc-label {
+      font-size: 0.72rem; color: #00ff88;
+      letter-spacing: 0.2em; margin-bottom: 2px;
+    }
+    .dc-stats {
+      display: flex; gap: 20px; align-items: flex-end;
+      padding-bottom: 12px; border-bottom: 1px solid #1e1e1e;
+    }
+    .dc-stat { display: flex; flex-direction: column; gap: 2px; }
+    .dc-stat-val {
+      font-size: 1.6rem; font-weight: 700;
+      color: #00ff88; line-height: 1;
+    }
+    .dc-stat-lbl {
+      font-size: 0.65rem; color: #444; letter-spacing: 0.15em;
+    }
+    .dc-sdiv { width: 1px; height: 34px; background: #1e1e1e; }
+    .dc-tagline {
+      font-size: 0.85rem; color: #666; line-height: 1.65;
+    }
+
+    /* bottom block — margin-top auto pushes it down */
+    .dc-contacts {
+      display: flex; flex-direction: column; gap: 7px;
+      padding-top: 12px; border-top: 1px solid #1e1e1e;
+      margin-top: auto;
+    }
+    .dc-contact {
+      display: flex; align-items: center;
+      gap: 8px; font-size: 0.78rem; color: #888;
+    }
+    .dc-icon {
+      width: 20px; height: 20px;
+      border: 1px solid #00ff88; border-radius: 3px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; color: #00ff88; font-size: 0.65rem;
+    }
+
+    /* ── BACK ── */
+    .dc-back-inner {
+      position: relative; z-index: 1;
+      display: grid; grid-template-columns: 1fr 1fr;
+      height: 100%;
+    }
+    .dc-back-left {
+      display: flex; flex-direction: column;
+      justify-content: flex-start;
+      padding: 24px 20px; border-right: 1px solid #1e1e1e;
+    }
+    .dc-tags {
+      display: flex; flex-wrap: wrap;
+      gap: 7px; margin-top: 10px;
+    }
+    .dc-tag {
+      font-size: 0.72rem; color: #00ff88;
+      border: 1px solid #00ff88; border-radius: 4px;
+      padding: 4px 10px; letter-spacing: 0.05em;
+      background: rgba(0,255,136,0.04);
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .dc-footer {
+      display: flex; align-items: center;
+      gap: 12px; flex-wrap: wrap;
+      margin-top: auto;
+    }
+    .dc-open-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      border: 1px solid #00ff88; border-radius: 4px;
+      padding: 5px 10px; font-size: 0.68rem; color: #00ff88;
+      letter-spacing: 0.1em; font-family: 'JetBrains Mono', monospace;
+      white-space: nowrap;
+    }
+    .dc-open-dot {
+      width: 5px; height: 5px; background: #00ff88;
+      border-radius: 50%; animation: dcblink 1.5s ease-in-out infinite;
+    }
+    @keyframes dcblink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+    .dc-footer-email {
+      font-size: 0.68rem; color: #555;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .dc-back-right {
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 24px 20px; gap: 10px;
+    }
+    .dc-back-name {
+      font-size: 1rem; font-weight: 700; color: #fff;
+      text-align: center; font-family: 'JetBrains Mono', monospace;
+    }
+    .dc-back-role {
+      font-size: 0.65rem; color: #00ff88;
+      letter-spacing: 0.15em; text-align: center;
+      font-family: 'JetBrains Mono', monospace; margin-bottom: 4px;
+    }
+    .dc-qr {
+      background: #fff; border-radius: 10px;
+      padding: 8px; width: 140px; height: 140px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .dc-scan-lbl {
+      font-size: 0.65rem; color: #555;
+      letter-spacing: 0.15em; font-family: 'JetBrains Mono', monospace;
+    }
+    .dc-scan-url {
+      font-size: 0.72rem; color: #00ff88;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* ── controls ── */
+    .dc-controls {
+      display: flex; gap: 12px;
+      align-items: center; flex-wrap: wrap; justify-content: center;
+    }
+    .dc-btn {
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      font-size: 0.72rem; letter-spacing: 0.1em;
+      padding: 10px 22px; border-radius: 6px; cursor: pointer;
+      transition: all 0.2s;
+    }
+    .dc-btn-flip { background: transparent; color: #00ff88; border: 1px solid #00ff88; }
+    .dc-btn-flip:hover { background: rgba(0,255,136,0.1); }
+    .dc-btn-dl { background: #00ff88; color: #000; font-weight: 700; border: 1px solid #00ff88; }
+    .dc-btn-dl:hover { background: #00cc6a; }
+    .dc-hint { font-size: 0.6rem; color: #333; font-family: 'JetBrains Mono', monospace; }
+
+    @media (max-width: 680px) {
+      .dc-scene { height: auto; }
+      .dc-front-inner { grid-template-columns: 1fr; }
+      .dc-left { border-right: none; border-bottom: 1px solid #1e1e1e; flex-direction: row; padding: 16px; gap: 14px; }
+      .dc-avatar { width: 70px; height: 70px; flex-shrink: 0; }
+      .dc-back-inner { grid-template-columns: 1fr; }
+      .dc-back-left { border-right: none; border-bottom: 1px solid #1e1e1e; }
+    }
+  </style>
+
+  <div id="cardModal">
+    <div class="card-modal-inner">
+      <button class="card-modal-close" id="closeCardBtn" aria-label="Close">✕</button>
+
+      <div class="dc-scene" id="dcScene">
+        <div class="dc-flipper" id="dcFlipper">
+
+          <!-- FRONT -->
+          <div class="dc-face" id="dcFront">
+            <div class="dc-grid-bg"></div>
+            <div class="dc-corners"></div>
+            <div class="dc-front-inner">
+              <div class="dc-left">
+                <div class="dc-avatar">
+                  <img src="assets/img/picture.jpg" alt="Shyam Lal Kafle" crossorigin="anonymous" />
                 </div>
-            </div>
-
-            <nav id="navbar" class="nav-menu navbar">
-                <ul>
-                <li><a href="#home" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
-                <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
-                <li><a href="#skills" class="nav-link scrollto"><i class='bx bx-cog'></i> <span>Skills</span></a></li>
-                <li><a href="#education" class="nav-link scrollto"><i class="bx bx-edit"></i> <span>Education</span></a></li>
-                <li><a href="#certificate" class="nav-link scrollto"><i class='bx bxs-graduation'></i> <span>Certificates</span></a></li>
-                <li><a href="#project" class="nav-link scrollto"><i class='bx bxs-package'></i> <span>Projects</span></a></li>
-                </ul>
-            </nav><!-- .nav-menu -->
-        </div>
-    </header><!-- End Header -->
-
-    
-    
-    <main id="main">
-      <!--================ Start Home Banner Area =================-->
-      <section class="home" id="home">
-        <div class="container">
-          <div class="content_data">
-            <div class="content_name">
-              <div class="banner_content">
-                <h3 class="text-uppercase"><span>Hello</span></h3>
-                <h1 class="text-uppercase"><span>I am</span> shyam</h1>
-                <h5 class="text-uppercase"><span>Full stack developer</span></h5>
-                <div class="d-flex align-items-center">
-                  <a class="primary_btn" href="mailto:Shyamlal9802@gmail.com" target="_blank"><span>Hire Me</span></a>
-                  <a class="primary_btn tr-bg" href="https://drive.google.com/file/d/1aQFXVFHNykcY20hDBGUvQVcH_-FPfsG5/view?usp=sharing" target="_blank"><span>Get CV</span></a>
-                </div>
+                <div class="dc-name">Shyam Lal<br/>Kafle</div>
+                <div class="dc-role">// JAVA BACKEND DEV</div>
               </div>
-            </div>
-            <div class="content_img">
-              <div class="hexagon hex"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" class="home-icon"></div>
-              <div class="hexagon hex"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" class="home-icon"></div>
-              <div class="hexagon hex"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" class="home-icon"></div>
-              <div class="hexagon hex"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" class="home-icon"></div>
-              <div class="home_right_img">
-                <img class="" src="assets/img/myselfpic.png" alt="">
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </section>
-      <!--================ End Home Banner Area =================-->
-      
-      <!-- ======= About Section ======= -->
-      <section id="about" class="about">
-        <div class="container">
-
-          <div class="section-title">
-            <h2>ABOUT</h2>
-          </div>
-
-          <div class="row">
-            <div class="col-lg-4" data-aos="fade-right">
-              <img src="assets/img/image1.png" class="img-fluid" alt="">
-            </div>
-            <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
-              <p><b>Welcome To My Portfolio.</b></p>
-              <p align="justify" class="fst-normal">
-                &nbsp &nbsp &nbsp &nbsp
-                I am aspiring Full-Stack Developer skilled in Java, Python, and JavaScript, with expertise in building scalable applications
-                using Spring Boot, React, and MySQL. Passionate about optimizing performance and leveraging machine learning to
-                drive innovative solutions.
-                <br>
-                <ul>
-                <li>✍ You can find my resume here : <a href="https://drive.google.com/file/d/1aQFXVFHNykcY20hDBGUvQVcH_-FPfsG5/view?usp=sharing" target="_blank"> &nbsp Resume</a> </li>
-                <li>📫 How to reach me: <a href="mailto:shyamlal9802@gmail.com" target="_blank"> &nbsp  Shyamlal9802@gmail.com</a></li>
-                <li>🌱 Currently working on Project: <a href="https://github.com/shyam0880/TuneHub-Frontend" target="_blank"> &nbsp TuneHub</a></li>
-                </ul>
-            </div>
-          </div>
-
-        </div>
-      </section>
-      <!-- End About Section -->
-
-      <!-- ======= Skills Section ======= -->
-      <section id="skills" class="skills section-bg">
-        <div class="container">
-
-          <div class="section-title">
-            <h2>SKILLS</h2>
-          </div>
-          <br>
-          <div class="list-type">
-            <div class="list-type-content">
-              <i class='bx bx-list-ul active' onclick="changeForm('list')"></i>
-              <i class='bx bxs-grid' onclick="changeForm('grid')"></i>
-            </div>
-          </div>
-          <div class="skills-content-container">
-            <div class="row skills-content list active">
-              <div class="col-md-6" data-aos="fade-up">
-                <ul>
-                  <li><b>Programming Languages:</b>
-                    <ul>
-                      <li><i class="bx bxl-java"></i> <span>Java</span></li>
-                      <li><i class='bx bxl-javascript'></i> <span>JavaScript</span></li>
-                      <li><i class="bx bxl-python"></i> <span>Python</span></li>
-                    </ul>
-                  </li>
-                  <br>
-                  <li><b>Front-End/Frameworks/Libraries:</b>
-                    <ul>
-                      <li><i class="bx bxl-html5"></i> <span>HTML</span></li>
-                      <li><i class="bx bxl-css3"></i> <span>CSS</span></li>
-                      <li><i class='bx bxl-spring-boot'></i> <span>Spring Boot</span></li>
-                      <li><i class='bx bxs-sushi'></i> <span>Hibernate</span></li>
-                      <li><i class='bx bxl-react'></i> <span>React</span></li>
-                      <li><i class='bx bx-code-alt'></i> <span>Vite</span></li>
-                    </ul>
-                  </li>
-                  <br>
-                  <li><b>Databases:</b>
-                    <ul>
-                      <li><i class="bx bxl-github"></i> <span>MySQL</span></li>
-                      <li><i class='bx bxs-data'></i></i> <span>Oracle</span></li>
-                    </ul>
-                  </li>
-                  <br>
-                  <li><b>Cloud & Testing:</b>
-                    <ul>
-                      <li><i class='bx bx-code-alt'></i> <span>Postman</span></li>
-                      <li><i class='bx bx-code-alt'></i> <span>Swagger</span></li>  
-                      <li><i class="bx bxl-netlify"></i> <span>Netlify</span></li>
-                      <li><i class='bx bxs-cloud'></i> <span>Cloudinary</span></li>
-                      <li><i class='bx bx-globe'></i> <span>Render</span></li>
-                    </ul>
-                  </li>
-                  
-                </ul>
-              </div>
-              <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
-                <ul>
-                  <li><b>Developer Tools:</b>
-                    <ul>
-                      <li><i class="bx bxl-visual-studio"></i> <span>Visual Studio</span></li>
-                      <li><i class="bx bx-note"></i> <span>Jupyter Notebook</span></li>
-                      <li><i class="bx bxl-google"></i> <span>Co_lab</span></li>
-                      <li><i class='bx bx-code-alt'></i> <span>Intellij IDEA</span></li>
-                    </ul>
-                  </li>
-                  <br>
-                  <li><b>Operating System:</b>
-                    <ul>
-                      <li><i class="bx bxl-windows"></i> <span>Window</span></li>
-                      <li><i class="bx bxl-tux"></i> <span>Linux</span></li>
-                      <li><i class="bx bxl-apple"></i> <span>MacOS</span></li>
-                    </ul>
-                  </li>
-                  <br>
-                  <li><b>Version Control:</b>
-                    <ul>
-                      <li><i class='bx bxl-git'></i></i> <span>Git</span></li>
-                      <li><i class="bx bxl-github"></i> <span>GitHub</span></li>
-                    </ul>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <div class="row skills-content grid">
-              <div class="skill-filter-buttons">
-                <h5 onclick="filterSkills('all')">All</h5>
-                <h5 onclick="filterSkills('language')"> Languages</h5>
-                <h5 onclick="filterSkills('framework')">Front-End/Frameworks/Libraries</h5>
-                <h5 onclick="filterSkills('cloud')">Cloud & Testing</h5>
-                <h5 onclick="filterSkills('database')">Database</h5>
-                <h5 onclick="filterSkills('tool')">Developer Tools</h5>
-                <h5 onclick="filterSkills('os')">Operating System</h5>
-                <h5 onclick="filterSkills('version')">Version Control</h5>
-              </div>
-              <div class="skill-filter-buttons-response">
-                <select onchange="filterSkills(this.value)">
-                  <option value="all">All</option>
-                  <option value="language">Languages</option>
-                  <option value="framework">Front-End/Frameworks/Libraries</option>
-                  <option value="cloud">Cloud & Testing</option>
-                  <option value="database">Database</option>
-                  <option value="tool">Developer Tools</option>
-                  <option value="os">Operating System</option>
-                  <option value="version">Version Control</option>
-                </select>
-              </div>
-            
-              <div class="skill-icons-grid">
-                <!-- Programming Languages -->
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" class="skill-icon language" title="Java">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" class="skill-icon language" title="JavaScript">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" class="skill-icon language" title="Python">
-
-                <!-- Frameworks/Libraries -->
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" class="skill-icon framework" title="HTML">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" class="skill-icon framework" title="CSS">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" class="skill-icon framework" title="Spring Boot">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/hibernate/hibernate-original.svg" class="skill-icon framework" title="Hibernate">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" class="skill-icon framework" title="React">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vitejs/vitejs-original.svg" class="skill-icon framework" title="vite">
-          
-                 <!-- Cloud & Testing -->  
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postman/postman-original.svg" class="skill-icon cloud" title="Postman"/>
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/swagger/swagger-original.svg" class="skill-icon cloud" title="swagger"/>
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/netlify/netlify-original.svg" class="skill-icon cloud" title="netlify"/>
-                <img src="https://res.cloudinary.com/dvwcy1jab/image/upload/v1739107211/samples/cloudinary-icon.png" class="skill-icon cloud" title="cloudinary"/>
-                <img src="https://cdn.sanity.io/images/34ent8ly/production/ec37a3660704e1fa2b4246c9a01ab34e145194ad-824x824.png" class="skill-icon cloud" title="render"/>
-  
-                <!-- Databases -->
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" class="skill-icon database" title="MySQL">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg" class="skill-icon database" title="Oracle">
-
-                <!-- Developer Tools -->
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/visualstudio/visualstudio-plain.svg" class="skill-icon tool" title="Visual Studio">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg" class="skill-icon tool" title="Jupyter Notebook">
-                <img src="https://w7.pngwing.com/pngs/968/991/png-transparent-google-colab-logo-tech-companies.png" class="skill-icon tool" title="Google Co Lab">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/intellij/intellij-original.svg" class="skill-icon tool" title="IntelliJ IDEA">
-
-                <!-- Operating Systems -->
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg" class="skill-icon os" title="Windows">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" class="skill-icon os" title="Linux">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apple/apple-original.svg" class="skill-icon os" title="MacOS">
-
-                <!-- Version Control -->
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" class="skill-icon version" title="Git">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" class="skill-icon version" title="GitHub">
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <!-- End Skills Section -->
-
-      <!-- ======= Education Section ======= -->
-      <section id="education" class="educations">
-        <div class="container">
-
-          <div class="section-title">
-            <h2>EDUCATION</h2>
-            <!-- <p></p> -->
-          </div>
-          <br>
-          <div class="list-type">
-            <div class="list-type-content-2">
-              <i class='bx bx-dots-vertical active' onclick="changeView('grid')"></i>
-              <i class='bx bx-list-ul' onclick="changeView('list')"></i>
-            </div>
-          </div>
-          <div class="row">
-            <div class="edu-box-2 active" data-aos="fade-up">
-              <article class="resume" data-page="resume">
-                <div class="timeline">
-                  <div class="title-wrapper">
-                    <div class="icon-box">
-                      <i class='bx bx-book-reader'></i>
+              <div class="dc-right">
+                <div class="dc-top">
+                  <div class="dc-label">// OVERVIEW</div>
+                  <div class="dc-stats">
+                    <div class="dc-stat">
+                      <span class="dc-stat-val">2+</span>
+                      <span class="dc-stat-lbl">YRS EXP</span>
+                    </div>
+                    <div class="dc-sdiv"></div>
+                    <div class="dc-stat">
+                      <span class="dc-stat-val">7+</span>
+                      <span class="dc-stat-lbl">PROJECTS</span>
                     </div>
                   </div>
-                    <ol class="timeline-list">
-                      <li class="timeline-item">
-                        <h4 class="h4 timeline-item-title"><p>Madanapalle Institute of Technology and Science</p></h4>
-                        <span>2019 — 2023</span><br>
-                        <span>CGPA: 8.21/10.00</span>
-                        <p class="timeline-text">
-                          Bachelor of Technology in Computer Science & Engineerings
-                        </p>
-                      </li>
-
-                      <li class="timeline-item">
-                        <h4 class="h4 timeline-item-title"><p>Deep High School</p></h4>
-                        <span>2017 — 2019</span><br>
-                        <span>Percentage: 79.5/100</span>
-                        <p class="timeline-text">
-                          Science Stream
-                        </p>
-                      </li>
-          
-                      <li class="timeline-item">
-                        <h4 class="h4 timeline-item-title"><p>Ramapur Revival English School</p></h4>
-                        <span>2016 — 2017</span><br>
-                        <span>Percentage: 77.5/100</span>
-                        <!-- <p class="timeline-text">
-                          Duis aute irure dolor in reprehenderit in voluptate, quila voluptas mag odit aut fugit, sed consequuntur
-                          magni dolores
-                          eos.
-                        </p> -->
-                      </li>
-                    </ol>
+                  <div class="dc-tagline">
+                    Building scalable backends,<br/>one endpoint at a time.
+                  </div>
                 </div>
-              </article>
+                <div class="dc-contacts">
+                  <div class="dc-contact"><div class="dc-icon">✉</div>Shyamlal9802@gmail.com</div>
+                  <div class="dc-contact"><div class="dc-icon">⌥</div>github.com/shyam0880</div>
+                  <div class="dc-contact"><div class="dc-icon">in</div>linkedin.com/in/shyam0880</div>
+                  <div class="dc-contact"><div class="dc-icon">⊕</div>shyam0880.github.io</div>
+                </div>
+              </div>
             </div>
-            <div class="edu-box" >
-              <div class="edu-item" id="edu-item">
-                <div class="conts">
-                  <div class="left"><h4>Madanapalle Institute of Technology and Science </h4></div>
-                  <div class="right"><h5><b>2019 – 2023</b></h5></div>
+          </div>
+
+          <!-- BACK — rotated 180deg, inner content counter-rotated so download is correct -->
+          <div class="dc-face dc-back-face" id="dcBack">
+            <div class="dc-grid-bg"></div>
+            <div class="dc-corners"></div>
+            <div class="dc-back-inner">
+              <div class="dc-back-left">
+                <div>
+                  <div class="dc-label">// TECH STACK</div>
+                  <div class="dc-tags">
+                    <span class="dc-tag">Java</span>
+                    <span class="dc-tag">Spring Boot</span>
+                    <span class="dc-tag">MySQL</span>
+                    <span class="dc-tag">React</span>
+                    <span class="dc-tag">REST API</span>
+                    <span class="dc-tag">Git</span>
+                    <span class="dc-tag">Redis</span>
+                    <span class="dc-tag">Kafka</span>
+                    <span class="dc-tag">Hibernate</span>
+                    <span class="dc-tag">Python</span>
+                  </div>
                 </div>
-                <div class="conts">  
-                  <div class="left"><p>B. Tech in Computer Science & Engineering</p></div>
-                  <div class="right"><p>CGPA : 8.21/10.00</p></div>
+                <div class="dc-footer">
+                  <div class="dc-open-badge"><span class="dc-open-dot"></span>OPEN TO OPPORTUNITIES</div>
+                  <span class="dc-footer-email">Shyamlal9802@gmail.com</span>
                 </div>
               </div>
-              <div class="edu-item" id="edu-item">
-                <div class="conts">
-                  <div class="left"><h4>Deep High School </h4></div>
-                  <div class="right"><h5><b>2017 – 2019</b></h5></div>
+              <div class="dc-back-right">
+                <div class="dc-back-name">Shyam Lal Kafle</div>
+                <div class="dc-back-role">JAVA BACKEND DEV</div>
+                <div class="dc-qr">
+                  <img src="assets/img/qrcode.png" alt="QR Code - Portfolio" style="width:124px;height:124px;display:block;border-radius:4px;" />
                 </div>
-                <div class="conts">  
-                  <div class="left"><p>Science </p></div>
-                  <div class="right"><p>Percentage : 79.5/100</p></div>
-                </div>
-              </div>
-              <div class="edu-item" id="edu-item">
-                <div class="conts">
-                  <div class="left"><h4>Ramapur Revival English School </h4></div>
-                  <div class="right"><h5><b>2016 - 2017</b></h5></div>
-                </div>
-                <div class="conts">  
-                  <div class="left"><p></p></div>
-                  <div class="right"><p>Percentage : 79.5/100</p></div>
-                </div>
+                <div class="dc-scan-lbl">SCAN · PORTFOLIO</div>
+                <div class="dc-scan-url">shyam0880.github.io</div>
               </div>
             </div>
           </div>
         </div>
-      </section>
-      <!-- End Resume Section -->
+      </div>
 
-      <!-- ======= Certificate Section ======= -->
-      <section id="certificate" class="certificates">
-        <div class="container">
+      <div class="dc-controls">
+        <button class="dc-btn dc-btn-flip" id="dcFlipBtn">⟳ FLIP CARD</button>
+        <button class="dc-btn dc-btn-dl" id="dcDownloadBtn">↓ DOWNLOAD</button>
+      </div>
+      <div class="dc-hint">Flip to see back · Download saves current side as PNG</div>
+    </div>
+  </div>
 
-          <div class="section-title">
-            <h2>CERTIFICATES</h2>
-          </div>
-          <br>
+  <script>
+  (function() {
+    const modal    = document.getElementById('cardModal');
+    const openBtn  = document.getElementById('openCardBtn');
+    const closeBtn = document.getElementById('closeCardBtn');
+    const scene    = document.getElementById('dcScene');
+    const flipBtn  = document.getElementById('dcFlipBtn');
+    const dlBtn    = document.getElementById('dcDownloadBtn');
+    let flipped    = false;
 
-            <div class="col" data-aos="fade-up">
-            <div class="certificate-grid">
-              <a href="/assets/img/Certificate/fullstack.png" target="_blank" class="cert-btn">
-                <div class="certificate-card">
-                  <img src="/assets/img/Certificate/fullstack.png" alt="Java Full Stack" class="cert-img">
-                  <h3>Java Full Stack Development</h3>
-                  <p>Issued by: KodNest Technologies</p>
-                </div>
-              </a>
-              
-              <a href="/assets/img/Certificate/python.png" target="_blank" class="cert-btn">
-                <div class="certificate-card">
-                  <img src="/assets/img/Certificate/python.png" alt="Python Course" class="cert-img">
-                  <h3>Programming for Everybody (Python)</h3>
-                  <p>Issued by: Coursera</p>
-                </div>
-              </a>
+    function openModal() {
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
 
-              <a href="/assets/img/Certificate/ai.png" target="_blank" class="cert-btn">
-                <div class="certificate-card">
-                  <img src="/assets/img/Certificate/ai.png" alt="AI Certificate" class="cert-img">
-                  <h3>AI for Everyone</h3>
-                  <p>Issued by: Coursera</p>
-                </div>
-              </a>
+    function closeModal() {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
 
-              <a href="/assets/img/Certificate/css.png" target="_blank" class="cert-btn">
-                <div class="certificate-card">
-                  <img src="/assets/img/Certificate/css.png" alt="AI Certificate" class="cert-img">
-                  <h3>Introduction to CSS</h3>
-                  <p>Issued by: Simplilearn</p>
-                </div>
-              </a>
+    openBtn.addEventListener('click', openModal);
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 
-              <a href="/assets/img/Certificate/generativeai.png" target="_blank" class="cert-btn">
-                <div class="certificate-card">
-                  <img src="/assets/img/Certificate/generativeai.png" alt="AI Certificate" class="cert-img">
-                  <h3>Generative AI Studio</h3>
-                  <p>Issued by: Simplilearn</p>
-                </div>
-              </a>
+    flipBtn.addEventListener('click', () => {
+      flipped = !flipped;
+      scene.classList.toggle('flipped', flipped);
+      flipBtn.textContent = flipped ? '⟳ FLIP FRONT' : '⟳ FLIP CARD';
+    });
 
-              <a href="/assets/img/Certificate/Git.png" target="_blank" class="cert-btn">
-                <div class="certificate-card">
-                  <img src="/assets/img/Certificate/Git.png" alt="AI Certificate" class="cert-img">
-                  <h3>Git (Version Control)</h3>
-                  <p>Issued by: Simplilearn</p>
-                </div>
-              </a>
-              <!-- Add more cards as needed -->
-            </div>
-            </div>
+    dlBtn.addEventListener('click', async () => {
+      dlBtn.textContent = '...';
+      dlBtn.disabled = true;
 
-        </div>
-      </section>
-      <!-- Certificate Section Ended -->
+      try {
+        const isBack = flipped;
+        const filename = isBack ? 'shyam-card-back.png' : 'shyam-card-front.png';
+        const W = 960, H = 540;
+        const cv = document.createElement('canvas');
+        cv.width = W; cv.height = H;
+        const ctx = cv.getContext('2d');
 
-      <!-- ======= Project Section ======= -->
-      <section id="project" class="project">
-        <div class="container">
-  
-          <div class="section-title">
-            <h2>PROJECT</h2>
-          </div>
-          <div class="project-wrap">
-              <div class="box_text">
-                  <div class="project-box">
-                    <img src="assets/img/Tunehub.png" alt="#"/>
-                    <h3>TuneHub</h3>
-                    <div class="content">
-                      <p>A full-stack music streaming platform with playlist creation, song playback, and download support.
-                        <br><br>
-                      <span> GitHub: </span> <i class='bx bxs-hand-right'> </i><a href="https://github.com/shyam0880/TuneHub-Frontend" target="_blank"> Click Here</a><br>
-                      <span> Deploy: </span> <i class='bx bxs-hand-right'> </i><a href="https://hummingbeat.netlify.app/" target="_blank"> Website</a>
-                      </p>
-                    </div>
-                  </div>
-              </div>
-              <div class="box_text">
-                  <div class="project-box">
-                    <i><img src="assets\img\Socialimg.png" alt="#"/></i>
-                    <h3>Social Media Platform</h3>
-                    <div class="content">
-                      <p>A web app enabling users to post, connect, and interact in real-time.
-                        <br><br>
-                      <span> GitHub: </span> <i class='bx bxs-hand-right'> </i><a href="https://github.com/shyam0880/Social-Media-Platform" target="_blank"> Click Here</a><br>
-                      </p>
-                    </div>
-                  </div>
-              </div>
-              <div class="box_text">
-                <div class="project-box">
-                  <i><img src="assets\img\Quiz.png" alt="#"/></i>
-                  <h3>QuizWeb</h3>
-                  <div class="content">
-                    <p>An interactive web-based quiz app to test user knowledge with score tracking.
-                      <br><br>
-                    <span> GitHub: </span> <i class='bx bxs-hand-right'> </i><a href="https://github.com/shyam0880/QuizWeb" target="_blank"> Click Here</a><br>
-                    <span> Deploy: </span> <i class='bx bxs-hand-right'> </i><a href="https://quizweby.netlify.app/" target="_blank"> Website</a><br>
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div class="box_text">
-                <div class="project-box">
-                  <i><img src="assets\img\ml.jpg" alt="#"/></i>
-                  <h3>Mental Health Prediction ML</h3>
-                  <div class="content">
-                    <p>A machine learning model to predict employees' mental health risks in the workplace.
-                      <br><br>
-                    <span> GitHub: </span> <i class='bx bxs-hand-right'> </i><a href="https://github.com/shyam0880/Mental_Health_prediction_using_ML" target="_blank"> Click Here</a><br>
-                    </p>
-                  </div>
-                </div>
-              </div>
-          </div>
-        </div> 
-      </section>       
-    </main><!-- End #main -->
+        const G='#00ff88', BG='#0a0a0a', WHITE='#ffffff', GRAY='#aaa', DARK='#666', BORDER='#222';
+        const SPLIT = W/2;
+        const PAD = 32;
 
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-    <label class="switch">
-      <input id="themeToggle" type="checkbox" />
-      <span class="slider round">
-        <i class='sn bx bx-sun' ></i>
-        <i class='mn bx bx-moon'></i>
-      </span>
-    </label>
+        function rect(x,y,w,h,c){ctx.fillStyle=c;ctx.fillRect(x,y,w,h);}
+        function line(x1,y1,x2,y2,c,lw=1){ctx.strokeStyle=c;ctx.lineWidth=lw;ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();}
+        function rr(x,y,w,h,r,fill,stroke,lw=1.5){
+          ctx.beginPath();ctx.moveTo(x+r,y);ctx.lineTo(x+w-r,y);ctx.arcTo(x+w,y,x+w,y+r,r);
+          ctx.lineTo(x+w,y+h-r);ctx.arcTo(x+w,y+h,x+w-r,y+h,r);ctx.lineTo(x+r,y+h);
+          ctx.arcTo(x,y+h,x,y+h-r,r);ctx.lineTo(x,y+r);ctx.arcTo(x,y,x+r,y,r);ctx.closePath();
+          if(fill){ctx.fillStyle=fill;ctx.fill();}
+          if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=lw;ctx.stroke();}
+        }
 
-    <span class="sidebar">
-      <i class='bx bx-menu-alt-left' ></i>
-    </span>
-    
-    <!-- Vendor JS Files -->
-    <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-    <script src="assets/vendor/aos/aos.js"></script>
-    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-    <script src="assets/vendor/typed.js/typed.umd.js"></script>
-    <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
-    <script src="assets/vendor/php-email-form/validate.js"></script>
+        // BG + grid
+        rect(0,0,W,H,BG);
+        ctx.strokeStyle='rgba(0,255,136,0.04)';ctx.lineWidth=1;
+        for(let x=0;x<W;x+=28){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
+        for(let y=0;y<H;y+=28){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
 
-    <!-- Template Main JS File -->
-    <script src="assets/js/main.js"></script>
+        // Corner accents
+        const CA=40;
+        rect(0,0,CA,2,G);rect(0,0,2,CA,G);
+        rect(W-CA,H-2,CA,2,G);rect(W-2,H-CA,2,CA,G);
 
+        // Center divider
+        line(SPLIT,0,SPLIT,H,BORDER);
 
+        if(!isBack){
+          // ══ FRONT ══
+
+          // LEFT — centered
+          const LC = SPLIT/2; // center of left panel
+
+          // Photo — centered
+          const iS=160, iX=LC-iS/2, iY=36;
+          try{
+            const img=document.querySelector('#dcFront .dc-avatar img');
+            if(img&&img.complete&&img.naturalWidth>0){
+              rr(iX-3,iY-3,iS+6,iS+6,14,null,G,2.5);
+              ctx.save();ctx.beginPath();ctx.roundRect(iX,iY,iS,iS,11);ctx.clip();
+              ctx.drawImage(img,iX,iY,iS,iS);ctx.restore();
+            }
+          }catch(e){}
+
+          // Name — centered
+          ctx.textAlign='center';
+          ctx.font='bold 26px JetBrains Mono,Courier New,monospace';
+          ctx.fillStyle=WHITE;
+          ctx.fillText('Shyam Lal',LC,228);
+          ctx.fillText('Kafle',LC,260);
+
+          // Role — centered
+          ctx.font='13px JetBrains Mono,Courier New,monospace';
+          ctx.fillStyle=G;
+          ctx.fillText('// JAVA BACKEND DEV',LC,292);
+
+          // RIGHT
+          const rx = SPLIT+PAD;
+          const RW = W-SPLIT-PAD; // usable right width
+          ctx.textAlign='left';
+
+          // Section label
+          ctx.font='bold 14px JetBrains Mono,Courier New,monospace';
+          ctx.fillStyle=G;
+          ctx.fillText('// OVERVIEW',rx,50);
+
+          // Stats
+          ctx.font='bold 50px JetBrains Mono,Courier New,monospace';
+          ctx.fillStyle=G;
+          ctx.fillText('2+',rx,120);
+          ctx.fillText('7+',rx+190,120);
+          ctx.font='12px JetBrains Mono,Courier New,monospace';
+          ctx.fillStyle=DARK;
+          ctx.fillText('YRS EXP',rx,138);
+          ctx.fillText('PROJECTS',rx+190,138);
+          line(rx+168,80,rx+168,144,BORDER);
+          line(rx,154,W-PAD,154,BORDER);
+
+          // Tagline
+          ctx.font='15px JetBrains Mono,Courier New,monospace';
+          ctx.fillStyle='#555';
+          ctx.fillText('Building scalable backends,',rx,182);
+          ctx.fillText('one endpoint at a time.',rx,204);
+
+          // Contacts separator
+          line(rx,H-196,W-PAD,H-196,BORDER);
+
+          // Contacts — 4 rows
+          const contacts=[
+            {icon:'✉',text:'Shyamlal9802@gmail.com'},
+            {icon:'⌥',text:'github.com/shyam0880'},
+            {icon:'in',text:'linkedin.com/in/shyam0880'},
+            {icon:'⊕',text:'shyam0880.github.io'},
+          ];
+          contacts.forEach((c,i)=>{
+            const cy = H-172 + i*42;
+            rr(rx,cy-16,24,24,4,null,G,1.5);
+            ctx.font='12px JetBrains Mono,Courier New,monospace';
+            ctx.fillStyle=G;ctx.textAlign='center';
+            ctx.fillText(c.icon,rx+12,cy+2);
+            ctx.font='15px JetBrains Mono,Courier New,monospace';
+            ctx.fillStyle=GRAY;ctx.textAlign='left';
+            ctx.fillText(c.text,rx+34,cy+2);
+          });
+
+        }else{
+          // ══ BACK ══
+
+          // LEFT — tech stack
+          ctx.font='bold 14px JetBrains Mono,Courier New,monospace';
+          ctx.fillStyle=G;ctx.textAlign='left';
+          ctx.fillText('// TECH STACK',PAD,48);
+
+          const tags=['Java','Spring Boot','MySQL','React','REST API','Git','Redis','Kafka','Hibernate','Python'];
+          let tx=PAD, ty=70;
+          tags.forEach(tag=>{
+            ctx.font='13px JetBrains Mono,Courier New,monospace';
+            const tw=ctx.measureText(tag).width+22;
+            if(tx+tw>SPLIT-PAD){tx=PAD;ty+=38;}
+            rr(tx,ty,tw,28,5,null,G,1.5);
+            ctx.fillStyle=G;ctx.textAlign='center';
+            ctx.fillText(tag,tx+tw/2,ty+19);
+            tx+=tw+9;
+          });
+
+          // Open badge
+          const bY=H-72;
+          rr(PAD,bY,260,34,5,null,G,1.5);
+          ctx.beginPath();ctx.arc(PAD+18,bY+17,6,0,Math.PI*2);
+          ctx.fillStyle=G;ctx.fill();
+          ctx.font='12px JetBrains Mono,Courier New,monospace';
+          ctx.fillStyle=G;ctx.textAlign='left';
+          ctx.fillText('OPEN TO OPPORTUNITIES',PAD+30,bY+22);
+
+          // Email
+          ctx.font='12px JetBrains Mono,Courier New,monospace';
+          ctx.fillStyle='#555';ctx.textAlign='left';
+          ctx.fillText('Shyamlal9802@gmail.com',PAD,H-24);
+
+          // RIGHT — centered
+          const RC = SPLIT + (W-SPLIT)/2; // center of right panel
+          ctx.textAlign='center';
+
+          // Name
+          ctx.font='bold 22px JetBrains Mono,Courier New,monospace';
+          ctx.fillStyle=WHITE;
+          ctx.fillText('Shyam Lal Kafle',RC,52);
+
+          // Role
+          ctx.font='13px JetBrains Mono,Courier New,monospace';
+          ctx.fillStyle=G;
+          ctx.fillText('JAVA BACKEND DEV',RC,74);
+
+          // QR image — centered
+          const qS=220, qX=RC-qS/2, qY=92;
+          try{
+            const qrImg=document.querySelector('#dcBack .dc-qr img');
+            if(qrImg&&qrImg.complete&&qrImg.naturalWidth>0){
+              rr(qX-8,qY-8,qS+16,qS+16,10,'#ffffff',null);
+              ctx.drawImage(qrImg,qX,qY,qS,qS);
+            }
+          }catch(e){}
+
+          // Scan label
+          ctx.font='12px JetBrains Mono,Courier New,monospace';
+          ctx.fillStyle='#555';ctx.textAlign='center';
+          ctx.fillText('SCAN · PORTFOLIO',RC,qY+qS+24);
+
+          // URL
+          ctx.font='15px JetBrains Mono,Courier New,monospace';
+          ctx.fillStyle=G;
+          ctx.fillText('shyam0880.github.io',RC,qY+qS+48);
+        }
+
+        // Outer border
+        ctx.strokeStyle='#1a1a1a';ctx.lineWidth=1;ctx.strokeRect(0.5,0.5,W-1,H-1);
+
+        const a=document.createElement('a');
+        a.download=filename;
+        a.href=cv.toDataURL('image/png');
+        a.click();
+
+      } catch(e) { console.error(e); }
+
+      dlBtn.textContent='↓ DOWNLOAD';
+      dlBtn.disabled=false;
+    });
+  })();
+  </script>
 
 </body>
+</html>

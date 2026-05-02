@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shyam Lal Kafle — Dev Card</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #0d0d0d;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'JetBrains Mono', monospace;
+      padding: 24px;
+      gap: 28px;
+    }
+
+    .back-link {
+      align-self: flex-start;
+      color: #00ff88;
+      font-size: 0.78rem;
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+    .back-link:hover { opacity: 1; }
+
+    /* ── flip container ── */
+    .card-scene {
+      width: 680px;
+      height: 380px;
+      perspective: 1200px;
+    }
+
+    .card-flipper {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .card-scene.flipped .card-flipper {
+      transform: rotateY(180deg);
+    }
+
+    .card-face {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      border-radius: 16px;
+      background: #0a0a0a;
+      border: 1px solid #1a1a1a;
+      overflow: hidden;
+    }
+
+    /* grid lines */
+    .card-face::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,255,136,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,255,136,0.03) 1px, transparent 1px);
+      background-size: 32px 32px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* corner accents */
+    .card-face::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(#00ff88, #00ff88) top left / 40px 2px no-repeat,
+        linear-gradient(#00ff88, #00ff88) top left / 2px 40px no-repeat,
+        linear-gradient(#00ff88, #00ff88) bottom right / 40px 2px no-repeat,
+        linear-gradient(#00ff88, #00ff88) bottom right / 2px 40px no-repeat;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .card-back { transform: rotateY(180deg); }
+
+    /* ── FRONT ── */
+    .front-inner {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      height: 100%;
+      position: relative;
+      z-index: 1;
+    }
+
+    .front-left {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      padding: 28px 20px;
+      border-right: 1px solid #1e1e1e;
+    }
+
+    .avatar-box {
+      width: 100px;
+      height: 100px;
+      border: 2px solid #00ff88;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,255,136,0.05);
+      overflow: hidden;
+    }
+
+    .avatar-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+
+    .front-name {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #ffffff;
+      text-align: center;
+      line-height: 1.3;
+    }
+
+    .front-role {
+      font-size: 0.65rem;
+      color: #00ff88;
+      letter-spacing: 0.15em;
+      text-align: center;
+    }
+
+    .front-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 28px 28px 28px 24px;
+      gap: 16px;
+    }
+
+    .section-label {
+      font-size: 0.62rem;
+      color: #00ff88;
+      letter-spacing: 0.2em;
+      margin-bottom: 4px;
+    }
+
+    .stats-row {
+      display: flex;
+      gap: 24px;
+      align-items: flex-end;
+      padding-bottom: 14px;
+      border-bottom: 1px solid #1e1e1e;
+    }
+
+    .stat-block { display: flex; flex-direction: column; gap: 2px; }
+
+    .stat-val {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #00ff88;
+      line-height: 1;
+    }
+
+    .stat-lbl {
+      font-size: 0.55rem;
+      color: #444;
+      letter-spacing: 0.15em;
+    }
+
+    .stat-divider {
+      width: 1px;
+      height: 36px;
+      background: #1e1e1e;
+    }
+
+    .tagline {
+      font-size: 0.72rem;
+      color: #666;
+      line-height: 1.6;
+      padding-bottom: 14px;
+      border-bottom: 1px solid #1e1e1e;
+    }
+
+    .contact-list {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    /* KEY FIX: use inline-flex with explicit line-height and vertical-align */
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.65rem;
+      color: #888;
+      height: 22px;          /* fixed row height */
+      line-height: 22px;
+    }
+
+    .contact-icon {
+      width: 18px;
+      height: 18px;
+      min-width: 18px;
+      min-height: 18px;
+      border: 1px solid #00ff88;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: #00ff88;
+      font-size: 0.6rem;
+      line-height: 18px;
+    }
+
+    .contact-text {
+      line-height: 18px;
+      vertical-align: middle;
+      display: inline-block;
+    }
+
+    /* ── BACK ── */
+    .back-inner {
+      display: grid;
+      grid-template-columns: 1fr 220px;
+      height: 100%;
+      position: relative;
+      z-index: 1;
+    }
+
+    .back-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 28px 24px;
+      border-right: 1px solid #1e1e1e;
+    }
+
+    .tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .tech-tag {
+      font-size: 0.62rem;
+      color: #00ff88;
+      border: 1px solid #00ff88;
+      border-radius: 4px;
+      padding: 4px 10px;
+      letter-spacing: 0.05em;
+      background: rgba(0,255,136,0.04);
+      line-height: 1.4;
+    }
+
+    .back-footer {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .open-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid #00ff88;
+      border-radius: 4px;
+      padding: 5px 12px;
+      font-size: 0.6rem;
+      color: #00ff88;
+      letter-spacing: 0.1em;
+      white-space: nowrap;
+      line-height: 1.4;
+    }
+
+    .open-dot {
+      width: 6px;
+      height: 6px;
+      min-width: 6px;
+      min-height: 6px;
+      background: #00ff88;
+      border-radius: 50%;
+      animation: blink 1.5s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.2; }
+    }
+
+    .back-email {
+      font-size: 0.58rem;
+      color: #444;
+    }
+
+    .back-right {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 20px;
+      gap: 10px;
+    }
+
+    .back-name {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #ffffff;
+      text-align: center;
+    }
+
+    .back-role {
+      font-size: 0.55rem;
+      color: #00ff88;
+      letter-spacing: 0.15em;
+      text-align: center;
+      margin-bottom: 4px;
+    }
+
+    .qr-wrap {
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 8px;
+      width: 120px;
+      height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .qr-wrap canvas { display: block; }
+
+    .scan-label {
+      font-size: 0.55rem;
+      color: #444;
+      letter-spacing: 0.15em;
+      text-align: center;
+    }
+
+    .scan-url {
+      font-size: 0.58rem;
+      color: #00ff88;
+      text-align: center;
+    }
+
+    /* ── controls ── */
+    .controls {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .btn-flip, .btn-download {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      padding: 10px 22px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: 1px solid #00ff88;
+    }
+
+    .btn-flip {
+      background: transparent;
+      color: #00ff88;
+    }
+    .btn-flip:hover { background: rgba(0,255,136,0.1); }
+
+    .btn-download {
+      background: #00ff88;
+      color: #000;
+      font-weight: 700;
+    }
+    .btn-download:hover { background: #00cc6a; }
+
+    .hint {
+      font-size: 0.6rem;
+      color: #333;
+      letter-spacing: 0.08em;
+    }
+
+    /* ── OFF-SCREEN RENDER TARGETS (no perspective, no 3d) ── */
+    /* These are pixel-perfect clones used ONLY for html2canvas capture */
+    #renderTargets {
+      position: fixed;
+      top: 0;
+      left: -9999px;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .render-card {
+      width: 680px;
+      height: 380px;
+      background: #0a0a0a;
+      border-radius: 16px;
+      border: 1px solid #1a1a1a;
+      overflow: hidden;
+      position: relative;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* grid bg for render targets */
+    .render-card .grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,255,136,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,255,136,0.03) 1px, transparent 1px);
+      background-size: 32px 32px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* corner accents for render targets */
+    .render-card .corners {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(#00ff88, #00ff88) top left / 40px 2px no-repeat,
+        linear-gradient(#00ff88, #00ff88) top left / 2px 40px no-repeat,
+        linear-gradient(#00ff88, #00ff88) bottom right / 40px 2px no-repeat,
+        linear-gradient(#00ff88, #00ff88) bottom right / 2px 40px no-repeat;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .render-card .inner {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      display: grid;
+    }
+
+    /* render-front */
+    #renderFront .inner { grid-template-columns: 240px 1fr; }
+
+    #renderFront .r-left {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      padding: 28px 20px;
+      border-right: 1px solid #1e1e1e;
+    }
+
+    #renderFront .r-avatar {
+      width: 100px;
+      height: 100px;
+      border: 2px solid #00ff88;
+      border-radius: 14px;
+      overflow: hidden;
+      background: rgba(0,255,136,0.05);
+    }
+    #renderFront .r-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    #renderFront .r-name {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #fff;
+      text-align: center;
+      line-height: 1.3;
+    }
+    #renderFront .r-role {
+      font-size: 0.65rem;
+      color: #00ff88;
+      letter-spacing: 0.15em;
+      text-align: center;
+    }
+
+    #renderFront .r-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 28px 28px 28px 24px;
+      gap: 16px;
+    }
+    #renderFront .r-section-label {
+      font-size: 0.62rem;
+      color: #00ff88;
+      letter-spacing: 0.2em;
+      margin-bottom: 4px;
+    }
+    #renderFront .r-stats {
+      display: flex;
+      gap: 24px;
+      align-items: flex-end;
+      padding-bottom: 14px;
+      border-bottom: 1px solid #1e1e1e;
+    }
+    #renderFront .r-stat { display: flex; flex-direction: column; gap: 2px; }
+    #renderFront .r-stat-val { font-size: 1.6rem; font-weight: 700; color: #00ff88; line-height: 1; }
+    #renderFront .r-stat-lbl { font-size: 0.55rem; color: #444; letter-spacing: 0.15em; }
+    #renderFront .r-divider { width: 1px; height: 36px; background: #1e1e1e; }
+    #renderFront .r-tagline {
+      font-size: 0.72rem;
+      color: #666;
+      line-height: 1.6;
+      padding-bottom: 14px;
+      border-bottom: 1px solid #1e1e1e;
+    }
+    #renderFront .r-contacts { display: flex; flex-direction: column; gap: 7px; }
+
+    /* THE FIX: use table-row / table-cell for html2canvas reliability */
+    #renderFront .r-contact-row {
+      display: table;
+      width: 100%;
+    }
+    #renderFront .r-contact-icon-cell {
+      display: table-cell;
+      width: 26px;
+      vertical-align: middle;
+    }
+    #renderFront .r-contact-icon-inner {
+      width: 18px;
+      height: 18px;
+      border: 1px solid #00ff88;
+      border-radius: 4px;
+      text-align: center;
+      line-height: 18px;
+      color: #00ff88;
+      font-size: 0.6rem;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    #renderFront .r-contact-text-cell {
+      display: table-cell;
+      vertical-align: middle;
+      font-size: 0.65rem;
+      color: #888;
+      font-family: 'JetBrains Mono', monospace;
+      line-height: 22px;
+    }
+
+    /* render-back */
+    #renderBack .inner { grid-template-columns: 1fr 220px; }
+
+    #renderBack .r-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 28px 24px;
+      border-right: 1px solid #1e1e1e;
+    }
+    #renderBack .r-section-label {
+      font-size: 0.62rem;
+      color: #00ff88;
+      letter-spacing: 0.2em;
+      margin-bottom: 12px;
+    }
+    #renderBack .r-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    #renderBack .r-tag {
+      font-size: 0.62rem;
+      color: #00ff88;
+      border: 1px solid #00ff88;
+      border-radius: 4px;
+      padding: 4px 10px;
+      letter-spacing: 0.05em;
+      background: rgba(0,255,136,0.04);
+      font-family: 'JetBrains Mono', monospace;
+      line-height: 1.4;
+    }
+    #renderBack .r-footer { display: flex; align-items: center; gap: 16px; }
+    #renderBack .r-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid #00ff88;
+      border-radius: 4px;
+      padding: 5px 12px;
+      font-size: 0.6rem;
+      color: #00ff88;
+      letter-spacing: 0.1em;
+      font-family: 'JetBrains Mono', monospace;
+      white-space: nowrap;
+    }
+    #renderBack .r-dot {
+      width: 6px;
+      height: 6px;
+      min-width: 6px;
+      background: #00ff88;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    #renderBack .r-email { font-size: 0.58rem; color: #444; font-family: 'JetBrains Mono', monospace; }
+
+    #renderBack .r-right {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 20px;
+      gap: 10px;
+    }
+    #renderBack .r-name { font-size: 0.85rem; font-weight: 700; color: #fff; text-align: center; }
+    #renderBack .r-role { font-size: 0.55rem; color: #00ff88; letter-spacing: 0.15em; text-align: center; }
+    #renderBack .r-qr {
+      background: #fff;
+      border-radius: 8px;
+      padding: 8px;
+      width: 120px;
+      height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #renderBack .r-scan-label { font-size: 0.55rem; color: #444; letter-spacing: 0.15em; font-family: 'JetBrains Mono', monospace; }
+    #renderBack .r-scan-url { font-size: 0.58rem; color: #00ff88; font-family: 'JetBrains Mono', monospace; }
+
+    @media (max-width: 720px) {
+      .card-scene { width: 100%; max-width: 420px; height: auto; aspect-ratio: 16/9; }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="../../index.html" class="back-link">← Back to Portfolio</a>
+
+  <!-- ── Visible flip card ── -->
+  <div class="card-scene" id="cardScene">
+    <div class="card-flipper">
+
+      <!-- FRONT -->
+      <div class="card-face card-front">
+        <div class="front-inner">
+          <div class="front-left">
+            <div class="avatar-box">
+              <img id="avatarImg" src="../../assets/img/picture.jpg" alt="Shyam Lal Kafle" crossorigin="anonymous" />
+            </div>
+            <div class="front-name">Shyam Lal<br/>Kafle</div>
+            <div class="front-role">// JAVA BACKEND DEV</div>
+          </div>
+          <div class="front-right">
+            <div>
+              <div class="section-label">// OVERVIEW</div>
+              <div class="stats-row">
+                <div class="stat-block">
+                  <span class="stat-val">2+</span>
+                  <span class="stat-lbl">YRS EXP</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-block">
+                  <span class="stat-val">7+</span>
+                  <span class="stat-lbl">PROJECTS</span>
+                </div>
+              </div>
+            </div>
+            <div class="tagline">Building scalable backends,<br/>one endpoint at a time.</div>
+            <div class="contact-list">
+              <div class="contact-item">
+                <div class="contact-icon">✉</div>
+                <span class="contact-text">Shyamlal9802@gmail.com</span>
+              </div>
+              <div class="contact-item">
+                <div class="contact-icon">⌥</div>
+                <span class="contact-text">github.com/shyam0880</span>
+              </div>
+              <div class="contact-item">
+                <div class="contact-icon">in</div>
+                <span class="contact-text">linkedin.com/in/shyam0880</span>
+              </div>
+              <div class="contact-item">
+                <div class="contact-icon">⊕</div>
+                <span class="contact-text">shyam0880.github.io</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BACK -->
+      <div class="card-face card-back">
+        <div class="back-inner">
+          <div class="back-left">
+            <div>
+              <div class="section-label">// TECH STACK</div>
+              <div class="tech-tags">
+                <span class="tech-tag">Java</span>
+                <span class="tech-tag">Spring Boot</span>
+                <span class="tech-tag">MySQL</span>
+                <span class="tech-tag">React</span>
+                <span class="tech-tag">REST API</span>
+                <span class="tech-tag">Git</span>
+                <span class="tech-tag">Redis</span>
+                <span class="tech-tag">Kafka</span>
+                <span class="tech-tag">Hibernate</span>
+                <span class="tech-tag">Python</span>
+              </div>
+            </div>
+            <div class="back-footer">
+              <div class="open-badge">
+                <span class="open-dot"></span>
+                OPEN TO OPPORTUNITIES
+              </div>
+              <span class="back-email">Shyamlal9802@gmail.com</span>
+            </div>
+          </div>
+          <div class="back-right">
+            <div class="back-name">Shyam Lal Kafle</div>
+            <div class="back-role">JAVA BACKEND DEV</div>
+            <div class="qr-wrap">
+              <canvas id="qrCanvas"></canvas>
+            </div>
+            <div class="scan-label">SCAN · PORTFOLIO</div>
+            <div class="scan-url">shyam0880.github.io</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── Controls ── -->
+  <div class="controls">
+    <button class="btn-flip" id="btnFlip">⟳ FLIP CARD</button>
+    <button class="btn-download" id="btnDownload">↓ DOWNLOAD</button>
+  </div>
+  <div class="hint">Click flip to see the back · Download saves current side as PNG</div>
+
+  <!-- ── Off-screen render targets (used only for download) ── -->
+  <div id="renderTargets">
+
+    <!-- RENDER FRONT -->
+    <div class="render-card" id="renderFront">
+      <div class="grid-bg"></div>
+      <div class="corners"></div>
+      <div class="inner">
+        <div class="r-left">
+          <div class="r-avatar">
+            <img id="renderAvatarImg" src="../../assets/img/picture.jpg" alt="Shyam Lal Kafle" crossorigin="anonymous" />
+          </div>
+          <div class="r-name">Shyam Lal<br/>Kafle</div>
+          <div class="r-role">// JAVA BACKEND DEV</div>
+        </div>
+        <div class="r-right">
+          <div>
+            <div class="r-section-label">// OVERVIEW</div>
+            <div class="r-stats">
+              <div class="r-stat">
+                <span class="r-stat-val">2+</span>
+                <span class="r-stat-lbl">YRS EXP</span>
+              </div>
+              <div class="r-divider"></div>
+              <div class="r-stat">
+                <span class="r-stat-val">7+</span>
+                <span class="r-stat-lbl">PROJECTS</span>
+              </div>
+            </div>
+          </div>
+          <div class="r-tagline">Building scalable backends,<br/>one endpoint at a time.</div>
+          <div class="r-contacts">
+            <div class="r-contact-row">
+              <div class="r-contact-icon-cell"><div class="r-contact-icon-inner">✉</div></div>
+              <div class="r-contact-text-cell">Shyamlal9802@gmail.com</div>
+            </div>
+            <div class="r-contact-row">
+              <div class="r-contact-icon-cell"><div class="r-contact-icon-inner">⌥</div></div>
+              <div class="r-contact-text-cell">github.com/shyam0880</div>
+            </div>
+            <div class="r-contact-row">
+              <div class="r-contact-icon-cell"><div class="r-contact-icon-inner">in</div></div>
+              <div class="r-contact-text-cell">linkedin.com/in/shyam0880</div>
+            </div>
+            <div class="r-contact-row">
+              <div class="r-contact-icon-cell"><div class="r-contact-icon-inner">⊕</div></div>
+              <div class="r-contact-text-cell">shyam0880.github.io</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RENDER BACK -->
+    <div class="render-card" id="renderBack">
+      <div class="grid-bg"></div>
+      <div class="corners"></div>
+      <div class="inner">
+        <div class="r-left">
+          <div>
+            <div class="r-section-label">// TECH STACK</div>
+            <div class="r-tags">
+              <span class="r-tag">Java</span>
+              <span class="r-tag">Spring Boot</span>
+              <span class="r-tag">MySQL</span>
+              <span class="r-tag">React</span>
+              <span class="r-tag">REST API</span>
+              <span class="r-tag">Git</span>
+              <span class="r-tag">Redis</span>
+              <span class="r-tag">Kafka</span>
+              <span class="r-tag">Hibernate</span>
+              <span class="r-tag">Python</span>
+            </div>
+          </div>
+          <div class="r-footer">
+            <div class="r-badge">
+              <div class="r-dot"></div>
+              OPEN TO OPPORTUNITIES
+            </div>
+            <span class="r-email">Shyamlal9802@gmail.com</span>
+          </div>
+        </div>
+        <div class="r-right">
+          <div class="r-name">Shyam Lal Kafle</div>
+          <div class="r-role">JAVA BACKEND DEV</div>
+          <div class="r-qr">
+            <canvas id="qrCanvasRender"></canvas>
+          </div>
+          <div class="r-scan-label">SCAN · PORTFOLIO</div>
+          <div class="r-scan-url">shyam0880.github.io</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // ── QR codes (both visible + render clone) ──
+    const qrOptions = { width: 104, margin: 1, color: { dark: '#000000', light: '#ffffff' } };
+    QRCode.toCanvas(document.getElementById('qrCanvas'), 'https://shyam0880.github.io', qrOptions, e => { if (e) console.error(e); });
+    QRCode.toCanvas(document.getElementById('qrCanvasRender'), 'https://shyam0880.github.io', qrOptions, e => { if (e) console.error(e); });
+
+    // ── Flip ──
+    const scene   = document.getElementById('cardScene');
+    const btnFlip = document.getElementById('btnFlip');
+    let flipped = false;
+
+    btnFlip.addEventListener('click', () => {
+      flipped = !flipped;
+      scene.classList.toggle('flipped', flipped);
+      btnFlip.textContent = flipped ? '⟳ FLIP FRONT' : '⟳ FLIP CARD';
+    });
+
+    // ── Download — capture off-screen render target instead of the 3D card ──
+    document.getElementById('btnDownload').addEventListener('click', async () => {
+      const target   = flipped ? document.getElementById('renderBack') : document.getElementById('renderFront');
+      const filename = flipped ? 'shyam-kafle-card-back.png' : 'shyam-kafle-card-front.png';
+
+      // Temporarily make it visible at its natural position so html2canvas can measure it
+      target.style.position = 'static';
+      target.style.left     = '0';
+
+      const canvas = await html2canvas(target, {
+        backgroundColor: '#0a0a0a',
+        scale: 3,
+        useCORS: true,
+        allowTaint: false,
+        logging: false,
+        width:  680,
+        height: 380,
+      });
+
+      // Move it back off-screen
+      target.style.position = '';
+      target.style.left     = '';
+
+      const link = document.createElement('a');
+      link.download = filename;
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    });
+  </script>
+</body>
+</html>

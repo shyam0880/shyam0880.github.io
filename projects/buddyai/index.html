@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BuddyAI — AI Terminal Assistant | Shyam Lal Kafle</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    [data-theme="dark"] {
+      --bg: #0d1117; --bg2: #010409; --surface: #161b22; --border: #30363d;
+      --green: #39d353; --green-light: #56d364; --cyan: #79c0ff;
+      --yellow: #e3b341; --text: #c9d1d9; --muted: #8b949e;
+      --shadow: rgba(0,0,0,0.5); --pre-bg: #010409;
+    }
+    [data-theme="light"] {
+      --bg: #f0f2f5; --bg2: #ffffff; --surface: #ffffff; --border: #c8cdd4;
+      --green: #1a7f37; --green-light: #2da44e; --cyan: #0550ae;
+      --yellow: #7d4e00; --text: #1a1e24; --muted: #57606a;
+      --shadow: rgba(0,0,0,0.12); --pre-bg: #eaeef2;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; line-height: 1.6; transition: background 0.3s, color 0.3s; }
+
+    /* NAV */
+    nav {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1rem 2rem; border-bottom: 1px solid var(--border);
+      position: sticky; top: 0; background: var(--bg); z-index: 100; gap: 1rem;
+    }
+    .nav-logo { font-family: 'JetBrains Mono', monospace; font-size: 1.2rem; color: var(--green); font-weight: 700; white-space: nowrap; display: flex; align-items: center; gap: 0.4rem; }
+    .nav-logo span { color: var(--text); }
+    .nav-links { display: flex; align-items: center; gap: 0.3rem; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.9rem; padding: 0.3rem 0.6rem; border-radius: 6px; transition: color 0.2s, background 0.2s; white-space: nowrap; }
+    .nav-links a:hover { color: var(--green); background: var(--surface); }
+    .nav-links a.back-link { display: inline-flex; align-items: center; gap: 0.3rem; border: 1px solid var(--border); border-radius: 6px; }
+    .nav-links a.back-link:hover { border-color: var(--green); }
+    .nav-links a.github-link { display: flex; align-items: center; gap: 0.3rem; }
+
+    /* FLOATING TOGGLE */
+    .theme-toggle {
+      position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 999;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 50%; width: 52px; height: 52px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 16px var(--shadow);
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+      color: var(--text);
+    }
+    .theme-toggle:hover { transform: scale(1.1); box-shadow: 0 6px 20px var(--shadow); border-color: var(--green); color: var(--green); }
+    .theme-toggle:active { transform: scale(0.95); }
+
+    /* HERO */
+    .hero { text-align: center; padding: 4rem 1.5rem 3rem; max-width: 800px; margin: 0 auto; }
+    .badge { display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(57,211,83,0.1); border: 1px solid rgba(57,211,83,0.3); color: var(--green); font-size: 0.8rem; padding: 0.3rem 0.8rem; border-radius: 20px; margin-bottom: 1.5rem; font-family: 'JetBrains Mono', monospace; }
+    .hero h1 { font-size: clamp(2rem, 6vw, 3.8rem); font-weight: 700; line-height: 1.15; margin-bottom: 1rem; }
+    .hero h1 .highlight { color: var(--green); }
+    .hero p { font-size: clamp(0.95rem, 2.5vw, 1.1rem); color: var(--muted); max-width: 550px; margin: 0 auto 2rem; }
+    .btn-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn { padding: 0.7rem 1.4rem; border-radius: 8px; font-size: 0.95rem; font-weight: 600; text-decoration: none; transition: all 0.2s; cursor: pointer; border: none; display: inline-flex; align-items: center; gap: 0.4rem; }
+    .btn-primary { background: var(--green); color: #fff; }
+    [data-theme="dark"] .btn-primary { color: #000; }
+    .btn-primary:hover { background: var(--green-light); transform: translateY(-1px); }
+    .btn-secondary { background: transparent; color: var(--text); border: 1px solid var(--border); }
+    .btn-secondary:hover { border-color: var(--green); color: var(--green); }
+
+    /* TERMINAL */
+    .terminal-wrapper { max-width: 720px; margin: 3rem auto; padding: 0 1.5rem; }
+    .terminal { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; box-shadow: 0 20px 60px var(--shadow); }
+    .terminal-header { background: var(--surface); padding: 0.8rem 1rem; display: flex; align-items: center; gap: 0.5rem; border-bottom: 1px solid var(--border); }
+    .dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+    .dot-red { background: #ff5f57; } .dot-yellow { background: #febc2e; } .dot-green { background: #28c840; }
+    .terminal-title { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--muted); margin-left: 0.5rem; }
+    .terminal-body { padding: 1.2rem 1.5rem; font-family: 'JetBrains Mono', monospace; font-size: clamp(0.75rem, 2vw, 0.88rem); line-height: 1.8; min-height: 200px; overflow-x: auto; }
+    .t-prompt { color: var(--muted); } .t-cmd { color: var(--text); } .t-loading { color: var(--cyan); }
+    .t-header { color: var(--yellow); } .t-bullet { color: var(--cyan); } .t-cmd-line { color: var(--green); }
+    .cursor { display: inline-block; width: 8px; height: 1em; background: var(--green); animation: blink 1s step-end infinite; vertical-align: text-bottom; }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    /* SECTIONS */
+    .section { max-width: 1000px; margin: 0 auto; padding: 4rem 1.5rem; }
+    .section-header { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.4rem; }
+    .section-header svg { color: var(--green); flex-shrink: 0; }
+    .section-title { font-size: clamp(1.4rem, 4vw, 1.8rem); font-weight: 700; }
+    .section-sub { color: var(--muted); margin-bottom: 2.5rem; font-size: 0.95rem; }
+
+    /* FEATURES */
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
+    .feature-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1.4rem; transition: border-color 0.2s, transform 0.2s; }
+    .feature-card:hover { border-color: var(--green); transform: translateY(-2px); }
+    .feature-icon { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: rgba(57,211,83,0.1); border-radius: 8px; margin-bottom: 0.9rem; color: var(--green); }
+    .feature-card h3 { font-size: 1rem; margin-bottom: 0.4rem; }
+    .feature-card p { color: var(--muted); font-size: 0.88rem; }
+
+    /* INSTALL */
+    .install-section { max-width: 750px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+    .steps { display: flex; flex-direction: column; gap: 1.5rem; }
+    .step { display: flex; gap: 1rem; align-items: flex-start; }
+    .step-num { background: rgba(57,211,83,0.15); border: 1px solid rgba(57,211,83,0.3); color: var(--green); font-family: 'JetBrains Mono', monospace; font-weight: 700; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 0.9rem; }
+    .step-content { flex: 1; min-width: 0; }
+    .step-content h3 { font-size: 1rem; margin-bottom: 0.4rem; display: flex; align-items: center; gap: 0.4rem; }
+    .step-content h3 svg { color: var(--muted); flex-shrink: 0; }
+    .step-content p { color: var(--muted); font-size: 0.88rem; margin-bottom: 0.6rem; }
+    pre { background: var(--pre-bg); border: 1px solid var(--border); border-radius: 8px; padding: 0.8rem 1rem; font-family: 'JetBrains Mono', monospace; font-size: clamp(0.75rem, 2vw, 0.85rem); color: var(--green); overflow-x: auto; white-space: pre-wrap; word-break: break-word; }
+    code { font-family: 'JetBrains Mono', monospace; font-size: 0.85em; }
+    .tip-box { background: rgba(57,211,83,0.07); border: 1px solid rgba(57,211,83,0.25); border-radius: 8px; padding: 0.8rem 1rem; font-size: 0.88rem; color: var(--text); margin-top: 0.6rem; display: flex; gap: 0.5rem; align-items: flex-start; }
+    .tip-box svg { color: var(--green); flex-shrink: 0; margin-top: 2px; }
+    .tip-box strong { color: var(--green); }
+
+    /* TECH */
+    .tech-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; }
+    .tech-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.2rem; display: flex; align-items: center; gap: 0.8rem; transition: border-color 0.2s; }
+    .tech-card:hover { border-color: var(--green); }
+    .tech-icon { width: 36px; height: 36px; background: rgba(57,211,83,0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--green); flex-shrink: 0; }
+    .tech-card h4 { font-size: 0.9rem; }
+    .tech-card p { font-size: 0.8rem; color: var(--muted); }
+
+    .divider { border: none; border-top: 1px solid var(--border); margin: 0 1.5rem; }
+
+    footer { border-top: 1px solid var(--border); text-align: center; padding: 2rem 1.5rem; color: var(--muted); font-size: 0.85rem; }
+    footer a { color: var(--green); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+    .footer-inner { display: flex; align-items: center; justify-content: center; gap: 0.4rem; flex-wrap: wrap; }
+    .footer-inner svg { color: var(--green); }
+
+    @media (max-width: 600px) {
+      nav { padding: 0.8rem 1rem; }
+      .nav-links { gap: 0.1rem; }
+      .nav-links a { font-size: 0.82rem; padding: 0.25rem 0.45rem; }
+      .hero { padding: 3rem 1rem 2rem; }
+      .terminal-body { padding: 1rem; }
+      .section { padding: 3rem 1rem; }
+      .install-section { padding: 2rem 1rem 3rem; }
+      .features-grid { grid-template-columns: 1fr; }
+      .tech-grid { grid-template-columns: repeat(2, 1fr); }
+      .btn-group { flex-direction: column; align-items: center; }
+      .btn { width: 100%; max-width: 280px; justify-content: center; }
+      .theme-toggle { bottom: 1rem; right: 1rem; width: 46px; height: 46px; }
+    }
+    @media (max-width: 400px) {
+      .tech-grid { grid-template-columns: 1fr; }
+      .nav-links a { font-size: 0.78rem; padding: 0.2rem 0.35rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">
+      <i data-lucide="terminal" width="20" height="20"></i>
+      buddy<span>.py</span>
+    </div>
+    <div class="nav-links">
+      <a href="../../index.html" class="back-link">
+        <i data-lucide="arrow-left" width="14" height="14"></i> Portfolio
+      </a>
+      <a href="#features">Features</a>
+      <a href="#install">Install</a>
+      <a href="#tech">Tech</a>
+      <a href="https://github.com/shyam0880/AI-Terminal-Assistant-BuddyAI" target="_blank" rel="noopener noreferrer" class="github-link">
+        <i data-lucide="github" width="15" height="15"></i> GitHub
+      </a>
+    </div>
+  </nav>
+
+  <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme" id="theme-btn">
+    <i data-lucide="sun" width="20" height="20" id="theme-icon"></i>
+  </button>
+
+  <section class="hero">
+    <div class="badge">
+      <i data-lucide="zap" width="13" height="13"></i>
+      Powered by OpenRouter Free API
+    </div>
+    <h1>Your AI Assistant<br/>lives in the <span class="highlight">Terminal</span></h1>
+    <p>Ask anything — git commands, Linux tips, Docker, coding help — and get instant answers right where you work.</p>
+    <div class="btn-group">
+      <a href="#install" class="btn btn-primary">
+        <i data-lucide="rocket" width="16" height="16"></i> Get Started
+      </a>
+      <a href="https://github.com/shyam0880/AI-Terminal-Assistant-BuddyAI" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">
+        <i data-lucide="github" width="16" height="16"></i> View on GitHub
+      </a>
+    </div>
+  </section>
+
+  <div class="terminal-wrapper">
+    <div class="terminal">
+      <div class="terminal-header">
+        <div class="dot dot-red"></div>
+        <div class="dot dot-yellow"></div>
+        <div class="dot dot-green"></div>
+        <span class="terminal-title">PowerShell — buddy</span>
+      </div>
+      <div class="terminal-body">
+        <div><span class="t-prompt">PS C:\Users\shyam&gt; </span><span class="t-cmd">buddy how to undo last git commit</span></div>
+        <div class="t-loading">Thinking ⠙</div>
+        <br/>
+        <div class="t-header">Options to undo last commit:</div>
+        <div class="t-bullet">&nbsp;&nbsp;• Keep changes staged:</div>
+        <div class="t-cmd-line">&nbsp;&nbsp;git reset --soft HEAD~1</div>
+        <div class="t-bullet">&nbsp;&nbsp;• Keep changes unstaged:</div>
+        <div class="t-cmd-line">&nbsp;&nbsp;git reset --mixed HEAD~1</div>
+        <div class="t-bullet">&nbsp;&nbsp;• Discard all changes:</div>
+        <div class="t-cmd-line">&nbsp;&nbsp;git reset --hard HEAD~1</div>
+        <br/>
+        <div><span class="t-prompt">PS C:\Users\shyam&gt; </span><span class="cursor"></span></div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider"/>
+
+  <section class="section" id="features">
+    <div class="section-header">
+      <i data-lucide="sparkles" width="22" height="22"></i>
+      <div class="section-title">Features</div>
+    </div>
+    <div class="section-sub">Everything you need, nothing you don't.</div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon"><i data-lucide="keyboard" width="20" height="20"></i></div>
+        <h3>Typewriter Effect</h3>
+        <p>Responses appear character by character, just like ChatGPT — making it feel alive.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i data-lucide="palette" width="20" height="20"></i></div>
+        <h3>Color-Coded Output</h3>
+        <p>Headers in yellow, commands in green, bullets in cyan. Easy to scan at a glance.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i data-lucide="loader-2" width="20" height="20"></i></div>
+        <h3>Loading Spinner</h3>
+        <p>Animated spinner with random messages so you know it's working while the API responds.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i data-lucide="shield-check" width="20" height="20"></i></div>
+        <h3>Clean Error Handling</h3>
+        <p>No ugly tracebacks. Timeout, connection errors, and API failures show friendly messages.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i data-lucide="badge-dollar-sign" width="20" height="20"></i></div>
+        <h3>100% Free</h3>
+        <p>Uses OpenRouter's free API tier. No credit card, no cost — just get a free key and go.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i data-lucide="pencil-line" width="20" height="20"></i></div>
+        <h3>Custom Command Name</h3>
+        <p>Rename the shortcut to anything — <code>ai</code>, <code>ask</code>, <code>helper</code> — and use that as your command.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider"/>
+
+  <section class="install-section" id="install">
+    <div class="section-header">
+      <i data-lucide="rocket" width="22" height="22"></i>
+      <div class="section-title">Installation</div>
+    </div>
+    <div class="section-sub">Get up and running in under 5 minutes.</div>
+    <div class="steps">
+
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h3><i data-lucide="git-branch" width="15" height="15"></i> Clone the repository</h3>
+          <pre>git clone https://github.com/shyam0880/AI-Terminal-Assistant-BuddyAI.git
+cd AI-Terminal-Assistant-BuddyAI</pre>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h3><i data-lucide="package" width="15" height="15"></i> Install dependencies</h3>
+          <pre>pip install -r requirements.txt</pre>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h3><i data-lucide="key-round" width="15" height="15"></i> Add your API key</h3>
+          <p>Get a free key from <a href="https://openrouter.ai" target="_blank" style="color:var(--green)">openrouter.ai</a> and create <code style="color:var(--yellow)">config.py</code> in the same folder:</p>
+          <pre>OPENROUTER_API_KEY = "your-api-key-here"
+MODEL = "openrouter/auto"</pre>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <h3><i data-lucide="file-code-2" width="15" height="15"></i> Set up the shortcut (Windows)</h3>
+          <p>Edit <code style="color:var(--yellow)">buddy.bat</code> with the full path to <code style="color:var(--yellow)">buddy.py</code>:</p>
+          <pre>@echo off
+python C:\your\path\to\buddy.py %*</pre>
+          <div class="tip-box">
+            <i data-lucide="lightbulb" width="16" height="16"></i>
+            <span><strong>Custom name tip:</strong> Rename <code>buddy.bat</code> to anything — <code>ai.bat</code>, <code>ask.bat</code>, <code>helper.bat</code>. That name becomes your terminal command.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <h3><i data-lucide="settings-2" width="15" height="15"></i> Add to PATH (run from anywhere)</h3>
+          <pre>1. Search "Environment Variables" in Start menu
+2. Click "Edit the system environment variables"
+3. Under System Variables → select Path → Edit
+4. Click New → enter your folder path (e.g. C:\ai\)
+5. Click OK and restart your terminal</pre>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">6</div>
+        <div class="step-content">
+          <h3><i data-lucide="terminal" width="15" height="15"></i> Start using Buddy!</h3>
+          <pre>buddy how to check open ports on windows
+buddy explain git rebase vs merge
+buddy what is a docker volume
+ask what is async await    ← if you renamed it to ask</pre>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <hr class="divider"/>
+
+  <section class="section" id="tech">
+    <div class="section-header">
+      <i data-lucide="wrench" width="22" height="22"></i>
+      <div class="section-title">Tech Stack</div>
+    </div>
+    <div class="section-sub">Simple, minimal, no bloat.</div>
+    <div class="tech-grid">
+      <div class="tech-card">
+        <div class="tech-icon"><i data-lucide="code-2" width="18" height="18"></i></div>
+        <div><h4>Python</h4><p>Core language</p></div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-icon"><i data-lucide="bot" width="18" height="18"></i></div>
+        <div><h4>OpenRouter API</h4><p>Free AI model access</p></div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-icon"><i data-lucide="paintbrush" width="18" height="18"></i></div>
+        <div><h4>colorama</h4><p>Terminal colors</p></div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-icon"><i data-lucide="globe" width="18" height="18"></i></div>
+        <div><h4>requests</h4><p>HTTP API calls</p></div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-icon"><i data-lucide="cpu" width="18" height="18"></i></div>
+        <div><h4>threading</h4><p>Loading animation</p></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <span>Built with</span>
+      <i data-lucide="heart" width="14" height="14"></i>
+      <span>by <a href="../../index.html">Shyam Lal Kafle</a></span>
+      <span>·</span>
+      <a href="https://github.com/shyam0880/AI-Terminal-Assistant-BuddyAI" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:0.3rem;">
+        <i data-lucide="github" width="14" height="14"></i> GitHub
+      </a>
+      <span>· MIT License</span>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+
+    function setTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('buddyai-theme', theme);
+      const btn = document.getElementById('theme-btn');
+      btn.innerHTML = theme === 'dark'
+        ? '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>'
+        : '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>';
+    }
+
+    function toggleTheme() {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      setTheme(isDark ? 'light' : 'dark');
+    }
+
+    setTheme(localStorage.getItem('buddyai-theme') || 'dark');
+  </script>
+</body>
+</html>

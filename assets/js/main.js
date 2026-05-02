@@ -1,358 +1,241 @@
-/**
-* Template Name: iPortfolio
-* Updated: May 30 2023 with Bootstrap v5.3.0
-* Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
-(function() {
-  "use strict";
+/* ═══════════════════════════════════════════════════════════
+   TYPEWRITER EFFECT
+═══════════════════════════════════════════════════════════ */
+(function initTypewriter() {
+  const el = document.getElementById('typewriter');
+  if (!el) return;
 
-  /**
-   * Easy selector helper function
-   */
-  const select = (el, all = false) => {
-    el = el.trim()
-    if (all) {
-      return [...document.querySelectorAll(el)]
+  const phrases = [
+    'Full Stack Developer',
+    'Java & Spring Boot Engineer',
+    'React Developer',
+  ];
+
+  let phraseIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+  let isPaused = false;
+
+  const TYPING_SPEED   = 80;   // ms per character when typing
+  const DELETING_SPEED = 45;   // ms per character when deleting
+  const PAUSE_AFTER    = 1800; // ms to pause at full phrase
+  const PAUSE_BEFORE   = 400;  // ms to pause before typing next
+
+  function tick() {
+    const current = phrases[phraseIndex];
+
+    if (isPaused) {
+      isPaused = false;
+      setTimeout(tick, isDeleting ? PAUSE_BEFORE : PAUSE_AFTER);
+      return;
+    }
+
+    if (!isDeleting) {
+      // Typing forward
+      charIndex++;
+      el.textContent = current.slice(0, charIndex);
+
+      if (charIndex === current.length) {
+        // Finished typing — pause then start deleting
+        isDeleting = true;
+        isPaused = true;
+        setTimeout(tick, PAUSE_AFTER);
+        return;
+      }
+      setTimeout(tick, TYPING_SPEED);
     } else {
-      return document.querySelector(el)
+      // Deleting
+      charIndex--;
+      el.textContent = current.slice(0, charIndex);
+
+      if (charIndex === 0) {
+        // Finished deleting — move to next phrase
+        isDeleting = false;
+        isPaused = true;
+        phraseIndex = (phraseIndex + 1) % phrases.length;
+        setTimeout(tick, PAUSE_BEFORE);
+        return;
+      }
+      setTimeout(tick, DELETING_SPEED);
     }
   }
 
+  // Small initial delay so the page settles first
+  setTimeout(tick, 600);
+})();
 
 
-  /**
-   * Easy event listener function
-   */
-  const on = (type, el, listener, all = false) => {
-    let selectEl = select(el, all)
-    if (selectEl) {
-      if (all) {
-        selectEl.forEach(e => e.addEventListener(type, listener))
-      } else {
-        selectEl.addEventListener(type, listener)
-      }
-    }
-  }
+/* ═══════════════════════════════════════════════════════════
+   INTERSECTION OBSERVER — FADE-IN
+═══════════════════════════════════════════════════════════ */
+(function initFadeIn() {
+  const elements = document.querySelectorAll('.fade-in');
+  if (!elements.length) return;
 
-  /**
-   * Easy on scroll event listener
-   */
-  const onscroll = (el, listener) => {
-    el.addEventListener('scroll', listener)
-  }
-
-  /**
-   * Navbar links active state on scroll
-   */
-  let navbarlinks = select('#navbar .scrollto', true)
-  const navbarlinksActive = () => {
-    let position = window.scrollY + 200
-    navbarlinks.forEach(navbarlink => {
-      if (!navbarlink.hash) return
-      let section = select(navbarlink.hash)
-      if (!section) return
-      if (position >= section.offsetTop && position <= (section.offsetTop + section.offsetHeight)) {
-        navbarlink.classList.add('active')
-      } else {
-        navbarlink.classList.remove('active')
-      }
-    })
-  }
-  window.addEventListener('load', navbarlinksActive)
-  onscroll(document, navbarlinksActive)
-
-  /**
-   * Scrolls to an element with header offset
-   */
-  const scrollto = (el) => {
-    let elementPos = select(el).offsetTop
-    window.scrollTo({
-      top: elementPos,
-      behavior: 'smooth'
-    })
-  }
-
-  /**
-   * Back to top button
-   */
-  let backtotop = select('.back-to-top')
-  if (backtotop) {
-    const toggleBacktotop = () => {
-      if (window.scrollY > 100) {
-        backtotop.classList.add('active')
-      } else {
-        backtotop.classList.remove('active')
-      }
-    }
-    window.addEventListener('load', toggleBacktotop)
-    onscroll(document, toggleBacktotop)
-  }
-
-  /**
-   * Mobile nav toggle
-   */
-  on('click', '.mobile-nav-toggle', function(e) {
-    select('body').classList.toggle('mobile-nav-active')
-    this.classList.toggle('bi-list')
-    this.classList.toggle('bi-x')
-  })
-
-  /**
-   * Scrool with ofset on links with a class name .scrollto
-   */
-  on('click', '.scrollto', function(e) {
-    if (select(this.hash)) {
-      e.preventDefault()
-
-      let body = select('body')
-      if (body.classList.contains('mobile-nav-active')) {
-        body.classList.remove('mobile-nav-active')
-        let navbarToggle = select('.mobile-nav-toggle')
-        navbarToggle.classList.toggle('bi-list')
-        navbarToggle.classList.toggle('bi-x')
-      }
-      scrollto(this.hash)
-    }
-  }, true)
-
-  /**
-   * Scroll with ofset on page load with hash links in the url
-   */
-  window.addEventListener('load', () => {
-    if (window.location.hash) {
-      if (select(window.location.hash)) {
-        scrollto(window.location.hash)
-      }
-    }
-  });
-
-  /**
-   * Hero type effect
-   */
-  const typed = select('.typed')
-  if (typed) {
-    let typed_strings = typed.getAttribute('data-typed-items')
-    typed_strings = typed_strings.split(',')
-    new Typed('.typed', {
-      strings: typed_strings,
-      loop: true,
-      typeSpeed: 100,
-      backSpeed: 50,
-      backDelay: 2000
-    });
-  }
-
-  /**
-   * Skills animation
-   */
-  let skilsContent = select('.skills-content');
-  if (skilsContent) {
-    new Waypoint({
-      element: skilsContent,
-      offset: '80%',
-      handler: function(direction) {
-        let progress = select('.progress .progress-bar', true);
-        progress.forEach((el) => {
-          el.style.width = el.getAttribute('aria-valuenow') + '%'
-        });
-      }
-    })
-  }
-
-  /**
-   * Porfolio isotope and filter
-   */
-  window.addEventListener('load', () => {
-    let portfolioContainer = select('.portfolio-container');
-    if (portfolioContainer) {
-      let portfolioIsotope = new Isotope(portfolioContainer, {
-        itemSelector: '.portfolio-item'
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target); // animate once
+        }
       });
+    },
+    { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+  );
 
-      let portfolioFilters = select('#portfolio-flters li', true);
+  elements.forEach((el) => observer.observe(el));
+})();
 
-      on('click', '#portfolio-flters li', function(e) {
-        e.preventDefault();
-        portfolioFilters.forEach(function(el) {
-          el.classList.remove('filter-active');
-        });
-        this.classList.add('filter-active');
 
-        portfolioIsotope.arrange({
-          filter: this.getAttribute('data-filter')
-        });
-        portfolioIsotope.on('arrangeComplete', function() {
-          AOS.refresh()
-        });
-      }, true);
+/* ═══════════════════════════════════════════════════════════
+   NAVBAR — SCROLL EFFECT & ACTIVE LINK
+═══════════════════════════════════════════════════════════ */
+(function initNavbar() {
+  const navbar   = document.getElementById('navbar');
+  const navLinks = document.querySelectorAll('.nav-link');
+  const sections = document.querySelectorAll('section[id]');
+
+  if (!navbar) return;
+
+  function onScroll() {
+    const navLinksEl = document.getElementById('nav-links');
+
+    if (window.scrollY > 50) {
+      navbar.classList.add('scrolled');
+      if (navLinksEl) navLinksEl.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+      if (navLinksEl) navLinksEl.classList.remove('scrolled');
     }
 
-  });
+    // Active link — use getBoundingClientRect so the last section
+    // activates even when the page can't scroll far enough for offsetTop logic
+    let currentId = '';
+    const offset = navbar.offsetHeight + 10; // account for fixed navbar height
 
-  /**
-   * Initiate portfolio lightbox
-   */
-  const portfolioLightbox = GLightbox({
-    selector: '.portfolio-lightbox'
-  });
-
-  /**
-   * Portfolio details slider
-   */
-  new Swiper('.portfolio-details-slider', {
-    speed: 400,
-    loop: true,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false
-    },
-    pagination: {
-      el: '.swiper-pagination',
-      type: 'bullets',
-      clickable: true
-    }
-  });
-
-  /**
-   * Testimonials slider
-   */
-  new Swiper('.testimonials-slider', {
-    speed: 600,
-    loop: true,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false
-    },
-    slidesPerView: 'auto',
-    pagination: {
-      el: '.swiper-pagination',
-      type: 'bullets',
-      clickable: true
-    },
-    breakpoints: {
-      320: {
-        slidesPerView: 1,
-        spaceBetween: 20
-      },
-
-      1200: {
-        slidesPerView: 3,
-        spaceBetween: 20
+    sections.forEach((section) => {
+      const rect = section.getBoundingClientRect();
+      // Section is considered "active" when its top is above the navbar bottom
+      if (rect.top <= offset) {
+        currentId = section.getAttribute('id');
       }
+    });
+
+    // Edge case: if scrolled to very bottom, force last section active
+    if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight - 10) {
+      currentId = sections[sections.length - 1].getAttribute('id');
     }
+
+    navLinks.forEach((link) => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === `#${currentId}`) {
+        link.classList.add('active');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll(); // run once on load
+})();
+
+
+/* ═══════════════════════════════════════════════════════════
+   HAMBURGER MENU
+═══════════════════════════════════════════════════════════ */
+(function initHamburger() {
+  const hamburger = document.getElementById('hamburger');
+  const navLinks  = document.getElementById('nav-links');
+  if (!hamburger || !navLinks) return;
+
+  function closeMenu() {
+    hamburger.classList.remove('open');
+    navLinks.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  hamburger.addEventListener('click', () => {
+    const isOpen = hamburger.classList.toggle('open');
+    navLinks.classList.toggle('open', isOpen);
+    hamburger.setAttribute('aria-expanded', String(isOpen));
+    document.body.style.overflow = isOpen ? 'hidden' : '';
   });
 
-  /**
-   * Animation on scroll
-   */
-  window.addEventListener('load', () => {
-    AOS.init({
-      duration: 1000,
-      easing: 'ease-in-out',
-      once: true,
-      mirror: false
-    })
+  // Close when a nav link is clicked
+  navLinks.querySelectorAll('.nav-link').forEach((link) => {
+    link.addEventListener('click', closeMenu);
   });
 
-  /**
-   * Initiate Pure Counter
-   */
-  new PureCounter();
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeMenu();
+  });
+})();
 
-//  for dark and light mode
-  const switchMood = (e) => {
-    if(e.target.checked) {
-      document.querySelector('body').setAttribute('data-theme', 'light')
-    }
-    else{
-      document.querySelector('body').setAttribute('data-theme', 'dark')
+
+/* ═══════════════════════════════════════════════════════════
+   BACK TO TOP BUTTON
+═══════════════════════════════════════════════════════════ */
+(function initBackToTop() {
+  const btn = document.getElementById('back-to-top');
+  if (!btn) return;
+
+  window.addEventListener(
+    'scroll',
+    () => {
+      if (window.scrollY > 300) {
+        btn.classList.add('visible');
+      } else {
+        btn.classList.remove('visible');
+      }
+    },
+    { passive: true }
+  );
+})();
+
+
+/* ═══════════════════════════════════════════════════════════
+   SMOOTH SCROLL — ALL ANCHOR LINKS
+═══════════════════════════════════════════════════════════ */
+(function initSmoothScroll() {
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener('click', (e) => {
+      const targetId = anchor.getAttribute('href');
+      if (!targetId || targetId === '#') return;
+
+      const target = document.querySelector(targetId);
+      if (!target) return;
+
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+})();
+
+
+/* ═══════════════════════════════════════════════════════════
+   LIGHT / DARK THEME TOGGLE
+═══════════════════════════════════════════════════════════ */
+(function initTheme() {
+  const btn  = document.getElementById('theme-toggle');
+  const icon = document.getElementById('theme-icon');
+  if (!btn) return;
+
+  function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('slk-theme', theme);
+    if (icon) {
+      icon.className = theme === 'light' ? 'ri-moon-line' : 'ri-sun-line';
     }
   }
-  document.getElementById('themeToggle').addEventListener('change', switchMood);
 
-  document.addEventListener('DOMContentLoaded', () => {
-    const sidebar = document.querySelector('.sidebar');
-    const sidebarIcon = document.querySelector('.sidebar i');
-    const header = document.querySelector('#header');
-  
-    // Toggle header visibility on sidebar click
-    sidebar.addEventListener('click', () => {
-      header.classList.toggle('active'); // Add or remove the "active" class
+  // Load saved preference, default to dark
+  const saved = localStorage.getItem('slk-theme') || 'dark';
+  applyTheme(saved);
 
-      const isOpen = header.classList.contains('active');
-      sidebarIcon.className = isOpen ? 'bi bi-x' : 'bx bx-menu-alt-left'; // Change sidebar icon
-    });
-  
-    // Reset header visibility on screen resize
-    window.addEventListener('resize', () => {
-      if (window.innerWidth > 1199) {
-        // Show header for large screens
-        header.classList.remove('active');
-        header.style.display = 'block';
-        const isOpen = header.classList.contains('active');
-        sidebarIcon.className = isOpen ? 'bi bi-x' : 'bx bx-menu-alt-left';
-      } else {
-        // Hide header for small screens
-        header.style.display = 'none';
-      }
-    });
+  btn.addEventListener('click', () => {
+    const current = document.documentElement.getAttribute('data-theme');
+    applyTheme(current === 'light' ? 'dark' : 'light');
   });
- 
-})()
-
-function filterSkills(category) {
-  const allIcons = document.querySelectorAll('.skill-icon');
-  allIcons.forEach(icon => {
-    if (category === 'all') {
-      icon.style.display = 'inline-block';
-    } else {
-      icon.style.display = icon.classList.contains(category) ? 'inline-block' : 'none';
-    }
-  });
-}
-
-// Show all by default
-document.addEventListener('DOMContentLoaded', () => filterSkills('all'));
-
-function changeForm(view) {
-  const listIcon = document.querySelector('.bx-list-ul');
-  const gridIcon = document.querySelector('.bxs-grid');
-  const listContent = document.querySelector('.skills-content.list');
-  const gridContent = document.querySelector('.skills-content.grid');
-
-  // Toggle icon active state
-  listIcon.classList.toggle('active', view === 'list');
-  gridIcon.classList.toggle('active', view === 'grid');
-
-  // Toggle content visibility
-  listContent.classList.toggle('active', view === 'list');
-  gridContent.classList.toggle('active', view === 'grid');
-}
-
-// Set default to list on page load
-window.addEventListener('DOMContentLoaded', () => {
-  changeForm('list');
-})
-
-function changeView(type) {
-  const container = document.querySelector('.list-type-content-2');
-  const listIcon = container.querySelector('.bx-list-ul');
-  const gridIcon = container.querySelector('.bx-dots-vertical');
-  const eduBox = document.querySelector('.edu-box');
-  const eduBox2 = document.querySelector('.edu-box-2');
-
-
-  // Toggle icon active state
-  listIcon.classList.toggle('active', type === 'list');
-  gridIcon.classList.toggle('active', type === 'grid');
-
-  // Toggle content visibility
-  eduBox.classList.toggle('active', type === 'list');
-  eduBox2.classList.toggle('active', type === 'grid');
-
-}
-window.addEventListener('DOMContentLoaded', () => {
-  changeView('grid');
-})
+})();
