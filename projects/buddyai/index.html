@@ -171,10 +171,10 @@
   <section class="hero">
     <div class="badge">
       <i data-lucide="zap" width="13" height="13"></i>
-      Powered by OpenRouter Free API
+      Version 2.0 — Now with REPL Mode & Rich Tables
     </div>
     <h1>Your AI Assistant<br/>lives in the <span class="highlight">Terminal</span></h1>
-    <p>Ask anything — git commands, Linux tips, Docker, coding help — and get instant answers right where you work.</p>
+    <p>Ask anything — git commands, Linux tips, Docker, coding help — and get instant answers with interactive chat or quick one-shot queries. Beautiful markdown tables and conversation memory included.</p>
     <div class="btn-group">
       <a href="#install" class="btn btn-primary">
         <i data-lucide="rocket" width="16" height="16"></i> Get Started
@@ -194,18 +194,23 @@
         <span class="terminal-title">PowerShell — buddy</span>
       </div>
       <div class="terminal-body">
-        <div><span class="t-prompt">PS C:\Users\shyam&gt; </span><span class="t-cmd">buddy how to undo last git commit</span></div>
+        <div><span class="t-prompt">PS C:\Users\shyam&gt; </span><span class="t-cmd">buddy</span></div>
+        <div class="t-header">Buddy AI Terminal Assistant</div>
+        <div style="color:var(--muted)">Type 'exit', 'quit', or press Ctrl+C to quit</div>
+        <br/>
+        <div><span class="t-prompt">you: </span><span class="t-cmd">how do I create a git branch</span></div>
         <div class="t-loading">Thinking ⠙</div>
         <br/>
-        <div class="t-header">Options to undo last commit:</div>
-        <div class="t-bullet">&nbsp;&nbsp;• Keep changes staged:</div>
-        <div class="t-cmd-line">&nbsp;&nbsp;git reset --soft HEAD~1</div>
-        <div class="t-bullet">&nbsp;&nbsp;• Keep changes unstaged:</div>
-        <div class="t-cmd-line">&nbsp;&nbsp;git reset --mixed HEAD~1</div>
-        <div class="t-bullet">&nbsp;&nbsp;• Discard all changes:</div>
-        <div class="t-cmd-line">&nbsp;&nbsp;git reset --hard HEAD~1</div>
+        <div class="t-bullet">&nbsp;&nbsp;• Create a new branch:</div>
+        <div class="t-cmd-line">&nbsp;&nbsp;git branch branch-name</div>
+        <div class="t-bullet">&nbsp;&nbsp;• Create and switch to it:</div>
+        <div class="t-cmd-line">&nbsp;&nbsp;git checkout -b branch-name</div>
         <br/>
-        <div><span class="t-prompt">PS C:\Users\shyam&gt; </span><span class="cursor"></span></div>
+        <div><span class="t-prompt">you: </span><span class="t-cmd">what about switching to it?</span></div>
+        <div class="t-header">[AI remembers context from previous question]</div>
+        <div class="t-cmd-line">&nbsp;&nbsp;git checkout branch-name</div>
+        <br/>
+        <div><span class="t-prompt">you: </span><span class="cursor"></span></div>
       </div>
     </div>
   </div>
@@ -219,6 +224,21 @@
     </div>
     <div class="section-sub">Everything you need, nothing you don't.</div>
     <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon"><i data-lucide="messages-square" width="20" height="20"></i></div>
+        <h3>REPL Mode 🆕</h3>
+        <p>Interactive chat sessions with conversation memory. Ask follow-up questions naturally — the AI remembers context.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i data-lucide="table" width="20" height="20"></i></div>
+        <h3>Rich Markdown Tables 🆕</h3>
+        <p>Beautiful table rendering powered by Rich library. Automatically sanitizes and formats markdown tables.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i data-lucide="split" width="20" height="20"></i></div>
+        <h3>Two Modes</h3>
+        <p>One-shot for quick questions. REPL for interactive conversations. Choose what fits your workflow.</p>
+      </div>
       <div class="feature-card">
         <div class="feature-icon"><i data-lucide="keyboard" width="20" height="20"></i></div>
         <h3>Typewriter Effect</h3>
@@ -240,9 +260,14 @@
         <p>No ugly tracebacks. Timeout, connection errors, and API failures show friendly messages.</p>
       </div>
       <div class="feature-card">
+        <div class="feature-icon"><i data-lucide="zap" width="20" height="20"></i></div>
+        <h3>Multiple Providers 🆕</h3>
+        <p>Works with OpenRouter, Groq, Together AI, or OpenAI. Switch providers easily in config.</p>
+      </div>
+      <div class="feature-card">
         <div class="feature-icon"><i data-lucide="badge-dollar-sign" width="20" height="20"></i></div>
-        <h3>100% Free</h3>
-        <p>Uses OpenRouter's free API tier. No credit card, no cost — just get a free key and go.</p>
+        <h3>100% Free Options</h3>
+        <p>Free tiers available on OpenRouter, Groq, and Together AI. No credit card required.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon"><i data-lucide="pencil-line" width="20" height="20"></i></div>
@@ -283,9 +308,21 @@ cd AI-Terminal-Assistant-BuddyAI</pre>
         <div class="step-num">3</div>
         <div class="step-content">
           <h3><i data-lucide="key-round" width="15" height="15"></i> Add your API key</h3>
-          <p>Get a free key from <a href="https://openrouter.ai" target="_blank" style="color:var(--green)">openrouter.ai</a> and create <code style="color:var(--yellow)">config.py</code> in the same folder:</p>
+          <p>Rename <code style="color:var(--yellow)">config.example.py</code> to <code style="color:var(--yellow)">config.py</code> and add your API key:</p>
           <pre>OPENROUTER_API_KEY = "your-api-key-here"
 MODEL = "openrouter/auto"</pre>
+          <div class="tip-box">
+            <i data-lucide="lightbulb" width="16" height="16"></i>
+            <div>
+              <strong>Provider options:</strong> Get free keys from:
+              <ul style="margin:0.3rem 0 0 1rem;padding:0;">
+                <li><a href="https://openrouter.ai" target="_blank" style="color:var(--green)">OpenRouter</a> (recommended, auto-picks models)</li>
+                <li><a href="https://console.groq.com" target="_blank" style="color:var(--green)">Groq</a> (very fast)</li>
+                <li><a href="https://api.together.ai" target="_blank" style="color:var(--green)">Together AI</a> (trial credits)</li>
+                <li><a href="https://platform.openai.com" target="_blank" style="color:var(--green)">OpenAI</a> (paid)</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -307,11 +344,12 @@ python C:\your\path\to\buddy.py %*</pre>
         <div class="step-num">5</div>
         <div class="step-content">
           <h3><i data-lucide="settings-2" width="15" height="15"></i> Add to PATH (run from anywhere)</h3>
-          <pre>1. Search "Environment Variables" in Start menu
-2. Click "Edit the system environment variables"
-3. Under System Variables → select Path → Edit
-4. Click New → enter your folder path (e.g. C:\ai\)
-5. Click OK and restart your terminal</pre>
+          <p>Follow these steps to run <code style="color:var(--cyan)">buddy</code> from any directory:</p>
+          <pre>Step 1: Search "Environment Variables" in Windows Start menu
+Step 2: Click "Edit the system environment variables"
+Step 3: Under System Variables → find Path → click Edit
+Step 4: Click New → enter your folder path (e.g., C:\ai\)
+Step 5: Click OK on all windows and restart your terminal</pre>
         </div>
       </div>
 
@@ -319,10 +357,20 @@ python C:\your\path\to\buddy.py %*</pre>
         <div class="step-num">6</div>
         <div class="step-content">
           <h3><i data-lucide="terminal" width="15" height="15"></i> Start using Buddy!</h3>
-          <pre>buddy how to check open ports on windows
-buddy explain git rebase vs merge
-buddy what is a docker volume
-ask what is async await    ← if you renamed it to ask</pre>
+          <p><strong>REPL Mode</strong> (Interactive chat with conversation memory):</p>
+          <pre>buddy
+Type 'exit', 'quit', or press Ctrl+C to quit
+
+you: how do I create a git branch
+[AI explains git branch creation]
+
+you: what about switching to it?
+[AI explains with context from previous question]</pre>
+          <p><strong>One-Shot Mode</strong> (Quick questions):</p>
+          <pre><span style="color:var(--yellow);font-weight:600;">buddy</span> how to check open ports on windows
+<span style="color:var(--yellow);font-weight:600;">buddy</span> explain git rebase vs merge
+<span style="color:var(--yellow);font-weight:600;">buddy</span> what is a docker volume
+<span style="color:var(--yellow);font-weight:600;">ask</span> what is async await    ← if you renamed it to ask</pre>
         </div>
       </div>
 
@@ -340,15 +388,19 @@ ask what is async await    ← if you renamed it to ask</pre>
     <div class="tech-grid">
       <div class="tech-card">
         <div class="tech-icon"><i data-lucide="code-2" width="18" height="18"></i></div>
-        <div><h4>Python</h4><p>Core language</p></div>
+        <div><h4>Python 3.7+</h4><p>Core language</p></div>
       </div>
       <div class="tech-card">
         <div class="tech-icon"><i data-lucide="bot" width="18" height="18"></i></div>
-        <div><h4>OpenRouter API</h4><p>Free AI model access</p></div>
+        <div><h4>OpenRouter API</h4><p>AI model access</p></div>
       </div>
       <div class="tech-card">
         <div class="tech-icon"><i data-lucide="paintbrush" width="18" height="18"></i></div>
         <div><h4>colorama</h4><p>Terminal colors</p></div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-icon"><i data-lucide="table-2" width="18" height="18"></i></div>
+        <div><h4>rich</h4><p>Markdown rendering</p></div>
       </div>
       <div class="tech-card">
         <div class="tech-icon"><i data-lucide="globe" width="18" height="18"></i></div>
